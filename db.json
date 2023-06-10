@@ -1,0 +1,94 @@
+{
+  "products": [
+    {
+      "id": 0.9052342341,
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/188/220/products/jimmy-hermano-roms-sauce-200-g1-e26bf15108888e58d116682970242429-1024-1024.jpg",
+      "amountWanted": 0,
+      "name": "Jimmy Hermano - Roms Sauce",
+      "category": "Pepper",
+      "price": 22.9,
+      "amount": 7,
+      "freight": 10
+    },
+    {
+      "id": 0.23552342341,
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/188/220/products/bhut-jolokia-coice-de-mula-120-ml1-f07396e2f98c535dd916682943024425-1024-1024.jpg",
+      "amountWanted": 0,
+      "name": "Bhut Jolokia - Coice de Mula",
+      "category": "Pepper",
+      "price": 19,
+      "amount": 5,
+      "freight": 5
+    },
+    {
+      "id": 0.235234234342341,
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/188/220/products/molho-de-pimenta-extrema-elvira1-165a50df7ce03c3b4416681974997480-480-0.jpg",
+      "amountWanted": 0,
+      "name": "Elvira's Bite - La Bruja",
+      "category": "Pepper",
+      "price": 28,
+      "amount": 10,
+      "freight": 2
+    },
+    {
+      "id": 0.5454341,
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/188/220/products/carolina-reaper-chilli-brothers-60-ml-011-de5db320e9c132f98c16682783385189-1024-1024.jpg",
+      "amountWanted": 0,
+      "name": "Carolina Reaper - Chilli Brothers",
+      "category": "Pepper",
+      "price": 21,
+      "amount": 8,
+      "freight": 0
+    },
+    {
+      "id": 0.909342341,
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/188/220/products/barbecue-chipotle-sauce-mix-pepper-300-g1-58acd74d5616813c9e16682957459132-480-0.jpg",
+      "amountWanted": 0,
+      "name": "Barbecue Chipotle Sauce - Mix Pepper",
+      "category": "Pepper",
+      "price": 13,
+      "amount": 130,
+      "freight": 0
+    },
+    {
+      "id": 0.8873552342341,
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/188/220/products/combo-carolina11-4b335c8336f3f5225d16692989552937-1024-1024.jpg",
+      "amountWanted": 0,
+      "name": "Carolina Reaper Combo",
+      "category": "Present",
+      "price": 68,
+      "amount": 20,
+      "freight": 3
+    },
+    {
+      "id": 0.23552124341,
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/188/220/products/six-pack-chef-n-boss-chef-n-boss-240-ml-011-a88bac6b56aaef88a616682744569482-480-0.jpg",
+      "amountWanted": 0,
+      "name": "Six Pack Chef n Boss - Chef Nn Boss",
+      "category": "Present",
+      "price": 59,
+      "amount": 5,
+      "freight": 10
+    },
+    {
+      "id": 0.09802341,
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/188/220/products/kit-5-molhos-linha-extra-hot-chilli-brothers-300-ml-011-36479a66c445431f8c16682783221506-1024-1024.jpg",
+      "amountWanted": 0,
+      "name": "Kit 5 extra hot line sauces - Chilli Brothers",
+      "category": "Present",
+      "price": 85,
+      "amount": 10,
+      "freight": 0
+    },
+    {
+      "id": 0.234232342341,
+      "image": "https://d3ugyf2ht6aenh.cloudfront.net/stores/188/220/products/kit-mix-pepper-crazy-pack-mix-pepper-180-ml1-93da22e63a084a889216682957207994-1024-1024.jpg",
+      "amountWanted": 0,
+      "name": "Kit Mix Pepper Crazy Pack",
+      "category": "Present",
+      "price": 1,
+      "amount": 0,
+      "freight": 10
+    }
+  ]
+}
