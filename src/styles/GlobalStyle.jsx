@@ -31,11 +31,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button{
-    margin-top: 1rem;
     border-radius: 5px;
-    padding: .5rem 2rem;
-    background-color: ${({theme}) => theme.colors.primary};
-    color: #ffffff;
+    /* padding: .5rem 2rem; */
+    /* background-color: ${({theme}) => theme.colors.primary}; */
+    /* color: #ffffff; */
     font-size: 1rem;
     border-radius: 5px;
     outline: none;

@@ -98,7 +98,6 @@ export const CardStyle = styled.div`
       background-color: ${({theme}) => theme.colors.primary};
       border-radius: 10px 0px 0px 10px;
       cursor: pointer;
-      height: 2rem;
       option{
         text-align: center
       }
@@ -120,6 +119,7 @@ export const StockInfo = styled.div`
   border-radius: 50px;
   color: #ffffff;
   font-weight: 500;
+  font-size: .9rem;
 ` 
 
 export const AddCartBtn = styled.button`   
@@ -131,7 +131,7 @@ export const AddCartBtn = styled.button`
 `
 
 export const SoldOutBtn = styled.button`   
-  background-color: ${({theme}) => theme.colors.soldOutButton};
+  background-color: ${({theme}) => theme.colors.soldOutBtn};
   color: #000000;
   width: 100%;
   padding: 0.5rem 1rem;

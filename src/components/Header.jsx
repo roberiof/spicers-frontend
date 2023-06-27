@@ -13,7 +13,6 @@ export default function Header(){
   const [transparent, setTransparent] = useState(true)
   const [opened , setOpened] = useState(false)
   const [activeHiddenMenu , setActiveHiddenMenu] = useState(false)
-  
   const navigate = useNavigate()
   
   useEffect(() => {    

@@ -4,7 +4,7 @@ export const formatToCurrency = (item) =>{
 }
 
 // API 
-const api = 'http://localhost:8181'
+const api = 'http://localhost:3000'
 
 // API PRODUCTS
 export const getProductsApi = async() =>{
@@ -13,8 +13,8 @@ export const getProductsApi = async() =>{
 }
 
 export const updateProductApi = async(product) => {
-  await fetch(`${api}/products/${product.id}`, {
-    method: "PUT",
+  await fetch(`${api}/products/${product._id}`, {
+    method: "PATCH",
     body: JSON.stringify(product),
     headers:{
       "Content-Type": "application/json"

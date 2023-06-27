@@ -23,7 +23,7 @@ export default function Summary({ setProdsCart, prodsCart }){
       for(let product of prodsCart){
         product.amount -= product.amountWanted
         product.amountWanted = 0 
-        updateApi(product)
+        updateProductApi(product)
         clearLocalStorage()
       }
       setTimeout(() =>{

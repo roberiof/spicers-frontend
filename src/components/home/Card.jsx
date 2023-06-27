@@ -17,20 +17,20 @@ export default function Card({product, setProds}){
   const addToCart = async(product) =>{  
     const amountWanted = parseFloat(select.current.options[select.current.selectedIndex].value)
     const productsCart = getLocalStorage()
-    let prodInCart = productsCart.find(item => item.id === product.id)
+    let prodInCart = productsCart.find(item => item._id === product._id)
 
     if(prodInCart){
       prodInCart.amountWanted += amountWanted
       
-      updateApi(prodInCart)
+      updateProductApi(prodInCart)
       setLocalStorage([...productsCart])
     }else{
       product.amountWanted += amountWanted
       
-      updateApi(product)
+      updateProductApi(product)
       setLocalStorage([...productsCart, product ])
     }
-    setProds(prev => prev.map(item => item.id === product.id ? item = product : item))
+    setProds(prev => prev.map(item => item._id === product._id ? item = product : item))
     // this guy is just for re-render my home component, i didn't find a better way to do it
   }
 
@@ -44,7 +44,7 @@ export default function Card({product, setProds}){
   )
 
   const OutStockButton =(
-  <SoldOutBtn format='soldOut' onClick={() => navigate('/account')} > Notify me when available</SoldOutBtn>
+    <SoldOutBtn format='soldOut' onClick={() => navigate('/account')} > Notify me when available </SoldOutBtn>
   )
 
   return(
@@ -56,12 +56,14 @@ export default function Card({product, setProds}){
           <p className="product-category"> {product.category} </p>
           <div className="card-price-text">
             <p className="price"> {formatToCurrency(product.price)}</p>
-            {product.amount !== 0 && <StockInfo inStock={true}> In Stock</StockInfo>}
-            {product.amount === 0 && <StockInfo inStock={false}> Sold Out </StockInfo>}
+            {product.amount !== 0 
+            ? <StockInfo inStock={true}> In Stock</StockInfo> 
+            : <StockInfo inStock={false}> Sold Out </StockInfo>}
           </div>
           <div className="add-div">
-            {product.amount > 0 && inStockButton}
-            {product.amount <= 0 && OutStockButton}
+            {product.amount > 0 
+            ? inStockButton 
+            : OutStockButton}
           </div>
         </div>      
       </CardStyle>
