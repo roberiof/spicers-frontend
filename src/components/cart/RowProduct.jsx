@@ -25,8 +25,8 @@ export default function RowProduct({product, setProdsCart}){
   const deleteProduct = () =>{
     product.amountWanted = 0 
     updateProductApi(product)
-    setProdsCart( prev => prev.filter( item => item.id !== product.id)) 
-    const newLocalStorage = getLocalStorage().filter(item => item.id !== product.id)
+    setProdsCart( prev => prev.filter( item => item._id !== product._id)) 
+    const newLocalStorage = getLocalStorage().filter(item => item._id !== product._id)
     setLocalStorage(newLocalStorage)
   }
   

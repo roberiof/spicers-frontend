@@ -15,23 +15,27 @@ export default function Card({product, setProds}){
   }
 
   const addToCart = async(product) =>{  
+    if(product.amountWanted == product.amount){
+      alert('You already added all units you can of this product!')
+      return 
+    }
+
     const amountWanted = parseFloat(select.current.options[select.current.selectedIndex].value)
     const productsCart = getLocalStorage()
     let prodInCart = productsCart.find(item => item._id === product._id)
 
-    if(prodInCart){
-      prodInCart.amountWanted += amountWanted
-      
-      updateProductApi(prodInCart)
-      setLocalStorage([...productsCart])
-    }else{
+    if ( product.amountWanted < product.amount ){
       product.amountWanted += amountWanted
-      
       updateProductApi(product)
-      setLocalStorage([...productsCart, product ])
+      if (prodInCart){
+        productsCart.map(item => item._id === product._id ? item.amountWanted = product.amountWanted : item )
+        setLocalStorage([...productsCart])
+      }else{
+        setLocalStorage([...productsCart, product ])
+      }
+      setProds(prev => prev.map(item => item._id === product._id ? item = product : item))
+      // this guy is just for re-render my home component, i didn't find a better way to do it
     }
-    setProds(prev => prev.map(item => item._id === product._id ? item = product : item))
-    // this guy is just for re-render my home component, i didn't find a better way to do it
   }
 
   const inStockButton = ( 

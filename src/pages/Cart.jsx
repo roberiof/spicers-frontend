@@ -19,7 +19,6 @@ export default function Cart(){
     window.scrollTo(0,0)
   }, [])
   
-  console.log(prodsCart)
   return (
     <>
       <Header/>
