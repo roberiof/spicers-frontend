@@ -54,7 +54,7 @@ export const getUserByEmailApi = async(email) => {
 }
 
 export const updateUserApi = async(id, user) => {
-  await fetch(`${api}/users/${id}` , {
+  await fetch(`${api}/users/id/${id}` , {
     method: "PATCH",
     body: JSON.stringify(user),
     headers: {
@@ -70,6 +70,7 @@ export const UserIdLSKey = 'loggedUserId'
 export const setLocalStorage = (item, localStorageKey) =>{
   localStorage.setItem(localStorageKey, JSON.stringify(item))
 }
+
 export const getLocalStorage = (localStorageKey) =>{
   return JSON.parse(localStorage.getItem(localStorageKey)) ?? []
 }

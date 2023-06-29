@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { UserIdLSKey, getUserByEmailApi, setLocalStorage } from '../../GeralFunctions';
+import { UserIdLSKey, getUserByEmailApi, setLocalStorage } from '../../utils/GeralFunctions';
 
 import styled from "styled-components";
 import {WrapperContent} from "../../styles/components/WrapperContent";
@@ -51,6 +51,7 @@ const WrapperLogin = styled(WrapperContent)`
     border: 0;
     outline: none;
     border-radius: 5px;
+    transition: 200ms all;
     &:focus{
       box-shadow: 0px 0px 3px 0px #000000; 
       transform: scale(1.01)
@@ -81,7 +82,7 @@ export default function GenericLoginPage({setIdUserLogged}){
       alert('Please, fill all info before log in.')
       return
     }
-    console.log(formValues.email)
+
     const user = await getUserByEmailApi(formValues.email)
 
     if(!user){

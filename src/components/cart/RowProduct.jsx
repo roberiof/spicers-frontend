@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {formatToCurrency, updateProductApi, setLocalStorage, getLocalStorage} from '../../GeralFunctions'
-
+import {formatToCurrency, updateProductApi, setLocalStorage, getLocalStorage, ProductsCartLSKey} from '../../utils/GeralFunctions'
 import {AiOutlineDelete , AiOutlinePlus ,AiOutlineMinus} from 'react-icons/ai'
+
+import { HandleAmountBtn , ClosingBtn} from '../../styles/components/CartStyle';
 
 export default function RowProduct({product, setProdsCart}){
   const [amountWanted, setAmountWanted] = useState(product.amountWanted)
 
+
   const handleAmount = (className) =>{
-    if(className === 'lower' && amountWanted>1){
+    if(className.includes('lower') && amountWanted>1){
       setAmountWanted(prev => prev-1)
-    }else if(className==='upper' && amountWanted < product.amount){
+    }else if(className.includes('upper') && amountWanted < product.amount){
       setAmountWanted(prev => prev+1)
     }
   }
@@ -18,16 +20,16 @@ export default function RowProduct({product, setProdsCart}){
     product.amountWanted = amountWanted
     updateProductApi(product)
     setProdsCart( prev => prev.map(item => item._id === product._id ? item = product : item))
-    const newLocalStorage = getLocalStorage().map( item  => item._id === product._id ? item = product : item)
-    setLocalStorage(newLocalStorage)
+    const newLocalStorage = getLocalStorage(ProductsCartLSKey).map( item  => item._id === product._id ? item = product : item)
+    setLocalStorage(newLocalStorage , ProductsCartLSKey)
   }
   
   const deleteProduct = () =>{
     product.amountWanted = 0 
     updateProductApi(product)
     setProdsCart( prev => prev.filter( item => item._id !== product._id)) 
-    const newLocalStorage = getLocalStorage().filter(item => item._id !== product._id)
-    setLocalStorage(newLocalStorage)
+    const newLocalStorage = getLocalStorage(ProductsCartLSKey).filter(item => item._id !== product._id)
+    setLocalStorage(newLocalStorage, ProductsCartLSKey)
   }
   
   useEffect( () => {
@@ -48,16 +50,16 @@ export default function RowProduct({product, setProdsCart}){
         </td>
         <td className='amount-td'>
           <div className="amount-div">
-            <button className="lower" onClick={(e) => handleAmount(e.target.className)}> <span className="icon"><AiOutlineMinus/></span> </button>
+            <HandleAmountBtn className="lower" onClick={(e) => handleAmount(e.target.className)}> <span className="icon"><AiOutlineMinus/></span> </HandleAmountBtn>
             <div> {amountWanted}  </div>
-            <button className="upper" onClick={(e) => handleAmount(e.target.className)}><span className="icon"> <AiOutlinePlus/></span> </button>
+            <HandleAmountBtn className="upper" onClick={(e) => handleAmount(e.target.className)}><span className="icon"> <AiOutlinePlus/></span> </HandleAmountBtn>
           </div>
         </td>
         <td className='total-td'>
           <p> {formatToCurrency(product.price*amountWanted)} </p>
         </td>
         <td>
-          <button className="closingButton" onClick={() => deleteProduct()}> <span className="icon"><AiOutlineDelete/></span> </button>
+          <ClosingBtn onClick={() => deleteProduct()}> <span className="icon"><AiOutlineDelete/></span> </ClosingBtn>
         </td>
     </tr>
   )

@@ -4,7 +4,7 @@ import Header from  "../components/Header";
 import UserLoginPage from '../components/login/UserLoginPage'
 import GenericLoginPage from '../components/login/GenericLoginPage'
 
-import { getLocalStorage , UserIdLSKey } from '../GeralFunctions';
+import { getLocalStorage , UserIdLSKey } from "../utils/GeralFunctions";
 
 export default function Login(){
   const responseLS = getLocalStorage(UserIdLSKey)

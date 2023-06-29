@@ -1,13 +1,13 @@
-import React, { useEffect, useState , useRef } from 'react'
+import React, { useEffect, useState  } from 'react'
+import { UserIdLSKey, clearLocalStorage, getUserByIdApi } from "../../utils/GeralFunctions";
+import { useNavigate } from 'react-router-dom';
 
 import ModalEditUser from './userPage/ModalEditUser';
 
 import styled from "styled-components";
 import { WrapperContent } from "../../styles/components/WrapperContent";
-import { LinkStyle } from '../../styles/components/HeaderStyle';
-import { UserIdLSKey, clearLocalStorage, getUserByIdApi } from '../../GeralFunctions';
-import { useNavigate } from 'react-router-dom';
-
+import { LinkStyle } from '../../styles/components/UtilsStyles';
+import { PrimaryBtn } from '../../styles/components/UtilsStyles';
 
 const UserTable = styled.div`
   overflow: auto;
@@ -39,7 +39,7 @@ const UserTable = styled.div`
   
 `
 
-const LeaveButton = styled.button`
+const LeaveButton = styled(PrimaryBtn)`
   display: block;
   margin: 3rem auto 0;  
   background-color: ${({theme}) => theme.colors.leaveButton};
@@ -98,7 +98,8 @@ export default function UserLoginPage({idUserLogged}){
             </div>
           </UserTable>
 
-          <button onClick={() => setIsModalOpen(prev => !prev)}> Edit </button>
+          <PrimaryBtn style={{marginTop: '1rem'}} onClick={() => setIsModalOpen(prev => !prev)}> Edit </PrimaryBtn>
+
           { isModalOpen && 
             <>
               <StyledModalBg style={{display: isModalOpen ? 'flex' : 'none'}}></StyledModalBg>

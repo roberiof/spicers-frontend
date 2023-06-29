@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import { Link } from "react-router-dom";
+import { LinkStyle } from "./UtilsStyles";
 
 export const Navigator = styled.nav`
   transition: all 300ms;
@@ -35,11 +35,7 @@ export const Navigator = styled.nav`
   }
 `
 
-export const LinkStyle = styled(Link)`
-  color: ${({theme}) => theme.colors.primary};
-  text-decoration: none;
-  font-weight: bold;
-  
+export const LinkStyleHeader = styled(LinkStyle)`
   ${({ itemBurgerMenu  }) => {
     if(itemBurgerMenu) {
       return css`
@@ -48,10 +44,7 @@ export const LinkStyle = styled(Link)`
       ` 
     } 
   }}
-  
-  &:hover{
-    text-decoration: underline
-  }
+
   @media (max-width: ${({theme}) => theme.medias.sm}) {
     display: ${({hideMobile}) => hideMobile ? 'none' : 'block'};
   }

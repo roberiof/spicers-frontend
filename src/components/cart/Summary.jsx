@@ -1,6 +1,6 @@
 import React from 'react';
-import { SummaryStyle } from '../../styles/components/CartStyle'
-import {formatToCurrency, updateProductApi, clearLocalStorage} from '../../GeralFunctions'
+import { ShopBtn, SummaryStyle } from '../../styles/components/CartStyle'
+import {formatToCurrency, updateProductApi, clearLocalStorage} from '../../utils/GeralFunctions'
 
 export default function Summary({ setProdsCart, prodsCart }){
   let subtotal = 0
@@ -48,7 +48,7 @@ export default function Summary({ setProdsCart, prodsCart }){
           <p> Total </p>
           <p> {formatToCurrency(subtotal + biggerFreight)} </p>
         </div>
-        <button onClick={() => confirmShop()}> SHOP </button>
+        <ShopBtn onClick={() => confirmShop()}> SHOP </ShopBtn>
     </SummaryStyle>
   )
 }

@@ -7,46 +7,9 @@ import { WrapperContent } from '../styles/components/WrapperContent'
 import { BackPageIcon } from '../styles/components/BackPageIcon'
 import { MdKeyboardBackspace } from 'react-icons/md'
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
-import { postUserApi , getUserByEmailApi } from '../GeralFunctions'
+import { postUserApi , getUserByEmailApi } from '../utils/GeralFunctions'
 
-import styled from 'styled-components'
-import { ViewIcon } from '../styles/components/ViewIcon'
-
-const FormStyled = styled.form`
-  width: 95%;
-  max-width: 488px;
-
-  .wrapper-label-icon-input{
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .input-icon{
-    position: relative;
-  }
-
-  input{
-    width:100%;
-    padding: .8rem .5rem;
-    background-color: ${({theme}) => theme.colors.input};
-    border: 0;
-    outline: none;
-    border-radius: 5px;
-    &:focus{
-      box-shadow: 0px 0px 3px 0px #000000; 
-      transform: scale(1.01)
-    }
-  }
-`
-
-const SubmitBtn = styled.button`
-  padding: .8rem 1rem;
-  background-color: ${({theme , disabled_style}) => disabled_style === 'true' ? theme.colors.disabledButton : theme.colors.primary} !important;
-  color: #fff;
-  margin-top: 2rem;
-  cursor: pointer;
-`
+import { FormStyled, SubmitBtn, ViewIcon } from '../styles/components/CreateAccountStyle'
 
 export default function CreateAccount(){
   const defaultFormValues = {name: '', email: '', password:'', confirmationPassword:''}
@@ -129,7 +92,7 @@ export default function CreateAccount(){
     <>
       <Header />
       <WrapperContent>
-        <BackPageIcon page={"account"} onClick={() => navigate('/account')}>
+        <BackPageIcon page={"account"} onClick={() => navigate('/login')}>
           <MdKeyboardBackspace/>
         </BackPageIcon>
         <h2 style={{marginTop: "2rem"}}> Fill all information below to able the button: </h2>

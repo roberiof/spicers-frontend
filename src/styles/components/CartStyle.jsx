@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { PrimaryBtn } from "./UtilsStyles";
 import { WrapperContent } from './WrapperContent'
 
 export const WrapperContentCart = styled(WrapperContent)`
@@ -90,10 +91,6 @@ export const TableStyle  = styled.table`
         background-color: ${({theme}) => theme.colors.input};
         width: 1rem;
       }
-      button{
-        padding-top: .2rem;
-        padding-inline: .5rem;
-      }
       .upper{
         border-radius: 0px 10px 10px 0px;
       }
@@ -106,17 +103,6 @@ export const TableStyle  = styled.table`
   .total-td{
     padding-left: 0.5rem;
     text-align: center;
-  }
-
-  .closingButton{
-    position: absolute;
-    font-size: 1rem;
-    margin-top: 2rem;
-    padding: .1rem;
-    border-radius: 5px;
-    border: 0;
-    top: 0;
-    transform: translateX(-100%);
   }
 
   .icon{
@@ -136,10 +122,6 @@ export const TableStyle  = styled.table`
         display: none;
       }
     }
-    .closingButton{
-      padding: 0;
-      margin-top: .8em;
-    }
   }
 
   @media (max-width: ${({theme}) => theme.medias.sm}) {
@@ -149,6 +131,27 @@ export const TableStyle  = styled.table`
     .product-td{
       padding-top: 3.5rem;
     }
+  }
+`
+
+export const HandleAmountBtn = styled(PrimaryBtn)`
+    background-color: ${({theme}) => theme.colors.cartActionBtn};
+    color: black;
+    padding: .2rem 0.5rem 0;
+`
+
+export const ClosingBtn = styled(PrimaryBtn)`
+  background-color: ${({theme}) => theme.colors.cartActionBtn};
+  color: black;
+  position: absolute;
+  margin-top: 2rem;
+  padding: .1rem;
+  border: 0;
+  top: 0;
+  transform: translateX(-100%);
+  @media (max-width: ${({theme}) => theme.medias.m}) {
+    padding: 0;
+    margin-top: .8em;
   }
 `
 
@@ -186,13 +189,11 @@ export const SummaryStyle = styled.div`
       font-weight: bold;
     }
   }
- 
-  button{
+`
+
+export const ShopBtn = styled(PrimaryBtn)`
     margin-block: 1rem;
-    border-radius: 5px;
     padding: .3rem;
     background-color: ${({theme}) => theme.colors.primary};
     color: #ffffff;
-    font-size: 1rem;
-  }
 `

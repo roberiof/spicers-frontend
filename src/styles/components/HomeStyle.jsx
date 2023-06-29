@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import bgHome from '../../assets/bgHome.jpg'
+import { PrimaryBtn } from "./UtilsStyles";
 
 export const WrapperHome = styled.div`
   background-color: #ffffff;
@@ -121,8 +122,8 @@ export const StockInfo = styled.div`
   font-weight: 500;
   font-size: .9rem;
 ` 
-
-export const AddCartBtn = styled.button`   
+  
+export const AddCartBtn = styled(PrimaryBtn)`   
   background-color: ${({theme}) => theme.colors.primary};
   color: #ffffff;
   width: 75%;
@@ -130,7 +131,7 @@ export const AddCartBtn = styled.button`
   border-radius: 0px 10px 10px 0px;
 `
 
-export const SoldOutBtn = styled.button`   
+export const SoldOutBtn = styled(PrimaryBtn)`   
   background-color: ${({theme}) => theme.colors.soldOutBtn};
   color: #000000;
   width: 100%;

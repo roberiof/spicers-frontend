@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
-import {formatToCurrency, getProductsApi, getLocalStorage} from '../GeralFunctions'
+import {formatToCurrency, getProductsApi, getLocalStorage, ProductsCartLSKey} from '../utils/GeralFunctions'
 
 import RowProduct from '../components/cart/RowProduct'
 import Summary from '../components/cart/Summary'
@@ -15,17 +15,20 @@ export default function Cart(){
   const navigate = useNavigate()
 
   useEffect(() => {
-    setProdsCart(getLocalStorage() ?? [])
+    setProdsCart(getLocalStorage(ProductsCartLSKey) ?? [])
     window.scrollTo(0,0)
   }, [])
   
   return (
     <>
       <Header/>
+
+
       <WrapperContentCart>
         <BackPageIcon page={"home"}  onClick={() => navigate('/')}>
           <MdKeyboardBackspace/>
         </BackPageIcon>
+
         <h1> Your Cart </h1>
         <div className='content'>
           <section>

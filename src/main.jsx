@@ -9,7 +9,7 @@ import theme from './styles/Theme'
 import { GlobalStyle } from './styles/GlobalStyle'
 
 // PAGES
-import Account from './pages/Account'
+import Login from './pages/Login'
 import AboutUs from './pages/AboutUs'
 import Cart from './pages/Cart'
 import Home from './pages/Home'
@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/aboutUs' element={<AboutUs/>}></Route>
             <Route path='/contactUs' element={<ContactUs/>}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
-            <Route path='/account' element={<Account/>}></Route>
+            <Route path='/login' element={<Login/>}></Route>
             <Route path='/create-account' element={<CreateAccount/>}></Route>
           </Route>
           

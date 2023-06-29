@@ -1,5 +1,5 @@
 import React , { useEffect, useState } from 'react'
-import  { getProductsApi } from '../GeralFunctions'
+import  { getProductsApi } from '../utils/GeralFunctions'
 import Card from '../components/home/Card'
 import Header from '../components/Header'
 

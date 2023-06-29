@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { PrimaryBtn } from '../../styles/components/UtilsStyles'
 import styled from 'styled-components'
 
 const StyledForm = styled.form`
@@ -40,6 +41,7 @@ const StyledForm = styled.form`
     border: 0;
     outline: none;
     border-radius: 5px;
+    transition: 200ms all;
     &:focus{
       box-shadow: 0px 0px 3px 0px #000000; 
       transform: scale(1.01)
@@ -77,7 +79,7 @@ export default function FormContactUs({text}){
           <label htmlFor="message"> Message <span style={{color: 'red'}}>*</span></label>
           <textarea placeholder="Message" id="message" required></textarea>
         </div>
-        <button type="submit" onClick={(e) => unavailableFeature(e)}> Submit </button>
+        <PrimaryBtn type="submit" onClick={(e) => unavailableFeature(e)}> Submit </PrimaryBtn>
     </StyledForm>
   )
 }

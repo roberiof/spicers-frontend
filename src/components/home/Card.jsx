@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import { CardStyle , StockInfo, AddCartBtn, SoldOutBtn } from "../../styles/components/HomeStyle"
-import {formatToCurrency, updateProductApi, getLocalStorage, setLocalStorage} from '../../GeralFunctions'
+import {formatToCurrency, updateProductApi, getLocalStorage, setLocalStorage, ProductsCartLSKey} from '../../utils/GeralFunctions'
 import { useNavigate } from "react-router-dom"
 
 export default function Card({product, setProds}){
@@ -21,7 +21,7 @@ export default function Card({product, setProds}){
     }
 
     const amountWanted = parseFloat(select.current.options[select.current.selectedIndex].value)
-    const productsCart = getLocalStorage()
+    const productsCart = getLocalStorage(ProductsCartLSKey)
     let prodInCart = productsCart.find(item => item._id === product._id)
 
     if ( product.amountWanted < product.amount ){
@@ -29,9 +29,9 @@ export default function Card({product, setProds}){
       updateProductApi(product)
       if (prodInCart){
         productsCart.map(item => item._id === product._id ? item.amountWanted = product.amountWanted : item )
-        setLocalStorage([...productsCart])
+        setLocalStorage([...productsCart] , ProductsCartLSKey)
       }else{
-        setLocalStorage([...productsCart, product ])
+        setLocalStorage([...productsCart, product ] , ProductsCartLSKey)
       }
       setProds(prev => prev.map(item => item._id === product._id ? item = product : item))
       // this guy is just for re-render my home component, i didn't find a better way to do it
@@ -48,7 +48,7 @@ export default function Card({product, setProds}){
   )
 
   const OutStockButton =(
-    <SoldOutBtn format='soldOut' onClick={() => navigate('/account')} > Notify me when available </SoldOutBtn>
+    <SoldOutBtn format='soldOut' onClick={() => navigate('/login')} > Notify me when available </SoldOutBtn>
   )
 
   return(

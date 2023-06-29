@@ -1,13 +1,13 @@
 import React , {useEffect, useState , useRef} from 'react'
 
-import { getUserByIdApi, updateUserApi } from '../../../GeralFunctions'
+import { getUserByIdApi, updateUserApi } from '../../../utils/GeralFunctions'
 
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
 import { MdOutlineCancel, MdOutlineFormatListNumbered } from 'react-icons/md'
 
 import styled from 'styled-components'
 import { Icon } from '../../../styles/components/HeaderStyle';
-import  { ViewIcon } from '../../../styles/components/ViewIcon'
+import  { ViewIcon } from '../../../styles/components/CreateAccountStyle'
 
 const StyledForm = styled.form`
   border-radius: 5px;
@@ -108,9 +108,10 @@ export default function ModalEditUser({setIsModalOpen, user ,setUser}){
       password: formValues.password,
       orders: [...user.orders]
     }
+    console.log(updatedUser)
     setUser(updatedUser)
     updateUserApi(user._id, updatedUser)
-    closeModal()
+    setIsModalOpen(false)
   }
 
   const isUserExistent = async() => {

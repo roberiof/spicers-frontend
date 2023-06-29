@@ -30,21 +30,5 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({theme}) => theme.colors.lightText}
   }
 
-  button{
-    border-radius: 5px;
-    /* padding: .5rem 2rem; */
-    /* background-color: ${({theme}) => theme.colors.primary}; */
-    /* color: #ffffff; */
-    font-size: 1rem;
-    border-radius: 5px;
-    outline: none;
-    border: 0;
-    font-weight: 600;
-    cursor: pointer;
-    &:hover{
-      opacity: .9;
-      box-shadow: 1px 1px 5px 0px #000000;
-      transition: all 100ms;
-    }
-  }
+
 `

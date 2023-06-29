@@ -8,6 +8,7 @@ const theme = {
     success: "#00be00de",
     fail: "#ffa500",
     leaveButton: "#ffa500",
+    cartActionBtn: "#f3ecec",
     summaryLight: "#e0e0e0",
     summaryDark: "#b4b4b4",
     tableBorder: "#b4b4b4",
