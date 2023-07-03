@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShopBtn, SummaryStyle } from '../../styles/components/CartStyle'
-import {formatToCurrency, updateProductApi, clearLocalStorage} from '../../utils/GeralFunctions'
+import {formatToCurrency, updateProductApi, clearLocalStorage, ProductsCartLSKey} from '../../utils/GeralFunctions'
 
 export default function Summary({ setProdsCart, prodsCart }){
   let subtotal = 0
@@ -24,7 +24,7 @@ export default function Summary({ setProdsCart, prodsCart }){
         product.amount -= product.amountWanted
         product.amountWanted = 0 
         updateProductApi(product)
-        clearLocalStorage()
+        clearLocalStorage(ProductsCartLSKey)
       }
       setTimeout(() =>{
         alert('Thank you! Enjoy your new shoppings!')

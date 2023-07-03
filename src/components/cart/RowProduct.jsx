@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import {formatToCurrency, updateProductApi, setLocalStorage, getLocalStorage, ProductsCartLSKey} from '../../utils/GeralFunctions'
 import {AiOutlineDelete , AiOutlinePlus ,AiOutlineMinus} from 'react-icons/ai'
 
-import { HandleAmountBtn , ClosingBtn} from '../../styles/components/CartStyle';
+import { HandleAmountBtn , DeleteBtn} from '../../styles/components/CartStyle';
 
 export default function RowProduct({product, setProdsCart}){
   const [amountWanted, setAmountWanted] = useState(product.amountWanted)
-
 
   const handleAmount = (className) =>{
     if(className.includes('lower') && amountWanted>1){
@@ -59,7 +58,7 @@ export default function RowProduct({product, setProdsCart}){
           <p> {formatToCurrency(product.price*amountWanted)} </p>
         </td>
         <td>
-          <ClosingBtn onClick={() => deleteProduct()}> <span className="icon"><AiOutlineDelete/></span> </ClosingBtn>
+          <DeleteBtn onClick={() => deleteProduct()}> <span className="icon"><AiOutlineDelete/></span> </DeleteBtn>
         </td>
     </tr>
   )

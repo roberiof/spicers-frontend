@@ -53,14 +53,15 @@ export const getUserByEmailApi = async(email) => {
   return response 
 }
 
-export const updateUserApi = async(id, user) => {
-  await fetch(`${api}/users/id/${id}` , {
+export const updateUserApi = async(user) => {
+  await fetch(`${api}/users/id/${user._id}` , {
     method: "PATCH",
     body: JSON.stringify(user),
     headers: {
       "Content-Type": "application/json"
     }
   })
+  // this 'user' can be just a part of user
 }
 
 // LOCAL STORAGE 

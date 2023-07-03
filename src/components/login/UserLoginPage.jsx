@@ -3,6 +3,7 @@ import { UserIdLSKey, clearLocalStorage, getUserByIdApi } from "../../utils/Gera
 import { useNavigate } from 'react-router-dom';
 
 import ModalEditUser from './userPage/ModalEditUser';
+import CreateProductSection from './CreateProductSection';
 
 import styled from "styled-components";
 import { WrapperContent } from "../../styles/components/WrapperContent";
@@ -75,60 +76,53 @@ export default function UserLoginPage({idUserLogged}){
   }
 
   return(
-    <>
-      <WrapperContent h1PrimaryColor={true}>
-        <h1> Welcome </h1>
+    <WrapperContent h1PrimaryColor={true}>
+      <h1> Welcome </h1>
 
-        <section>
-          <h2> Overview </h2>
+      <section>
+        <h2> Overview </h2>
 
-          <UserTable>
-            <div className='column'>
-              <p className='light-text'> Name </p>
-              <p className='light-text'> Email </p>
-              <p className='light-text'> Password </p>
-            </div>
-            <div className='column'>
-              <input type="text" value={user && user.name} />
-              <input type="text" value={user && user.email} />
-              <input type="password" value={user && user.password} />
-            </div>
-            <div className="column">
-          
-            </div>
-          </UserTable>
-
-          <PrimaryBtn style={{marginTop: '1rem'}} onClick={() => setIsModalOpen(prev => !prev)}> Edit </PrimaryBtn>
-
-          { isModalOpen && 
-            <>
-              <StyledModalBg style={{display: isModalOpen ? 'flex' : 'none'}}></StyledModalBg>
-              <ModalEditUser
-                setIsModalOpen={setIsModalOpen}
-                user={user}
-                setUser={setUser}
-              />
-            </>
-          }
-        </section>
-
-        <section>
-          <h2 style={{marginTop: "3rem"}}> Last Orders </h2>
-          <div>
-            {
-              user &&
-              user.orders.length > 0 ?
-              <p>Ok, you have a order</p>
-              :
-              <p>There is no last orders! Make your first one, go to our <LinkStyle to="/"> Home Page </LinkStyle>  and see our products.</p>
-            }
+        <UserTable>
+          <div className='column'>
+            <p className='light-text'> Name </p>
+            <p className='light-text'> Email </p>
+            <p className='light-text'> Password </p>
           </div>
-        </section>
+          <div className='column'>
+            <input type="text" value={user && user.name} />
+            <input type="text" value={user && user.email} />
+            <input type="password" value={user && user.password} />
+          </div>
+          <div className="column">
+        
+          </div>
+        </UserTable>
 
-        {isStoreAdministrator ? <CreateProductSection/> : <></>}
+        <PrimaryBtn style={{marginTop: '1rem'}} onClick={() => setIsModalOpen(prev => !prev)}> Edit </PrimaryBtn>
 
-        <LeaveButton onClick={() => handleUserLogOut()}> Leave </LeaveButton>
-      </WrapperContent>
-    </>
+        { isModalOpen && 
+          <>
+            <StyledModalBg style={{display: isModalOpen ? 'flex' : 'none'}}></StyledModalBg>
+            <ModalEditUser
+              setIsModalOpen={setIsModalOpen}
+              user={user}
+              setUser={setUser}
+            />
+          </>
+        }
+      </section>
+
+      <section>
+        <h2 style={{marginTop: "3rem"}}> Last Orders </h2>
+        <div>
+          {user && user.orders.length == 0 && <p>There is no last orders! Make your first one, go to our <LinkStyle to="/"> Home Page </LinkStyle>  and see our products.</p>}
+          {/* {user && user.orders.length > 0} */}
+        </div>
+      </section>
+
+      {isStoreAdministrator ? <CreateProductSection/> : <></>}
+
+      <LeaveButton onClick={() => handleUserLogOut()}> Leave </LeaveButton>
+    </WrapperContent>
   )
 }

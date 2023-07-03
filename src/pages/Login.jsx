@@ -19,13 +19,10 @@ export default function Login(){
 
   return(
     <>
-      <Header/>
-
       { idUserLogged ? 
       <UserLoginPage idUserLogged={idUserLogged}/> 
       : 
       <GenericLoginPage setIdUserLogged={setIdUserLogged}/> }
-
     </>
   )
 }

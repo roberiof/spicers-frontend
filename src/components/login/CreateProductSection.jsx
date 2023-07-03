@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 
+import { SubmitBtn } from '../../styles/components/UtilsStyles'
 import styled from 'styled-components'
 
 const FormStyled = styled.form`
@@ -31,6 +32,7 @@ const FormStyled = styled.form`
     cursor: pointer;
   }
 `
+
 export default function CreateProductSection(){
   const defaultProductValue = {
     name: '',
@@ -91,7 +93,7 @@ export default function CreateProductSection(){
           onChange={(e) => handleInputChange(e, 'amount')}/>
         </div>
 
-        <button type="submit" onClick={(e) => validateProduct(e)}> Create Product </button>
+        <SubmitBtn type="submit" onClick={(e) => validateProduct(e)}> Create </SubmitBtn>
       </FormStyled>
     </>
   )

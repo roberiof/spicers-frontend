@@ -18,6 +18,10 @@ export const PrimaryBtn = styled.button`
     }
 `
 
+export const SubmitBtn = styled(PrimaryBtn)`
+  background-color: ${({theme , disabled_style}) => disabled_style === 'true' ? theme.colors.disabledButton : theme.colors.primary} !important;
+`
+
 export const LinkStyle = styled(Link)`
   color: ${({theme}) => theme.colors.primary};
   text-decoration: none;
@@ -25,5 +29,17 @@ export const LinkStyle = styled(Link)`
   
   &:hover{
     text-decoration: underline
+  }
+`
+
+export const ViewIcon = styled.span`
+  cursor: pointer;
+  position: absolute;
+  padding-top: .5rem;
+  right: 3%;
+  z-index: 1;
+  color: ${({theme}) => theme.colors.lightText}; 
+  *{
+    pointer-events: none ;
   }
 `

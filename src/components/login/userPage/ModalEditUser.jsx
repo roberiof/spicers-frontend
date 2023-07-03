@@ -7,7 +7,8 @@ import { MdOutlineCancel, MdOutlineFormatListNumbered } from 'react-icons/md'
 
 import styled from 'styled-components'
 import { Icon } from '../../../styles/components/HeaderStyle';
-import  { ViewIcon } from '../../../styles/components/CreateAccountStyle'
+import  { ViewIcon } from '../../../styles/components/UtilsStyles'
+import { SubmitBtn } from '../../../styles/components/UtilsStyles'
 
 const StyledForm = styled.form`
   border-radius: 5px;
@@ -43,14 +44,6 @@ const StyledForm = styled.form`
     display: block;
     margin: 2rem auto 0rem;
   }
-`
-
-const SubmitBtn = styled.button`
-  padding: .8rem 1rem;
-  background-color: ${({theme , disabled_style}) => disabled_style === 'true' ? theme.colors.disabledButton : theme.colors.primary} !important;
-  color: #fff;
-  margin-top: 2rem;
-  cursor: pointer;
 `
 
 export default function ModalEditUser({setIsModalOpen, user ,setUser}){
@@ -102,15 +95,11 @@ export default function ModalEditUser({setIsModalOpen, user ,setUser}){
   } 
   
   const updateUser = () => {
-    const updatedUser = {
-      name: formValues.name,
-      email: formValues.email,
-      password: formValues.password,
-      orders: [...user.orders]
-    }
-    console.log(updatedUser)
-    setUser(updatedUser)
-    updateUserApi(user._id, updatedUser)
+    user.name = formValues.name
+    user.email = formValues.email
+    user.password = formValues.password
+    setUser(user)
+    updateUserApi(user)
     setIsModalOpen(false)
   }
 

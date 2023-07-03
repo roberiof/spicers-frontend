@@ -12,7 +12,6 @@ export default function ContactUs(){
 
   return(
     <>
-      <Header/>
       <WrapperContent h1PrimaryColor={true} isParagraphLight={true}>
         <h1> Contact Us</h1>
         <h2> Got some questions or you just need help? </h2>

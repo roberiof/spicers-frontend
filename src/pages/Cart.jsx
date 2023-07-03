@@ -20,50 +20,45 @@ export default function Cart(){
   }, [])
   
   return (
-    <>
-      <Header/>
+    <WrapperContentCart>
+      <BackPageIcon page={"home"}  onClick={() => navigate('/')}>
+        <MdKeyboardBackspace/>
+      </BackPageIcon>
 
-
-      <WrapperContentCart>
-        <BackPageIcon page={"home"}  onClick={() => navigate('/')}>
-          <MdKeyboardBackspace/>
-        </BackPageIcon>
-
-        <h1> Your Cart </h1>
-        <div className='content'>
-          <section>
-            <TableStyle>
-              <thead>
-                <tr> 
-                  <th className='thead-product  light-text'> Product </th>
-                  <th className="light-text price-th"> Price </th>
-                  <th className="light-text amount-th"> Amount </th>
-                  <th className="light-text"> Total </th>
-                </tr>
-              </thead>
-              <tbody>
-                {prodsCart && prodsCart.map( (product, index) => (
-                  <RowProduct 
-                    key={index} 
-                    product={product} 
-                    setProdsCart={setProdsCart}
-                    getProductsApi={getProductsApi}
-                    formatToCurrency={formatToCurrency}
-                  />
-                ))}
-                {prodsCart.length === 0 && <tr><td colSpan={4} className='empty-message'> The cart is empty!</td></tr>}
-              </tbody>
-            </TableStyle>
-          </section>
-          <aside>
-            <Summary 
-              setProdsCart={setProdsCart} 
-              prodsCart={prodsCart}
-              formatToCurrency={formatToCurrency}
-            />
-          </aside>
-        </div>
-      </WrapperContentCart>
-    </>
+      <h1> Your Cart </h1>
+      <div className='content'>
+        <section>
+          <TableStyle>
+            <thead>
+              <tr> 
+                <th className='thead-product  light-text'> Product </th>
+                <th className="light-text price-th"> Price </th>
+                <th className="light-text amount-th"> Amount </th>
+                <th className="light-text"> Total </th>
+              </tr>
+            </thead>
+            <tbody>
+              {prodsCart && prodsCart.map( (product, index) => (
+                <RowProduct 
+                  key={index} 
+                  product={product} 
+                  setProdsCart={setProdsCart}
+                  getProductsApi={getProductsApi}
+                  formatToCurrency={formatToCurrency}
+                />
+              ))}
+              {prodsCart.length === 0 && <tr><td colSpan={4} className='empty-message'> The cart is empty!</td></tr>}
+            </tbody>
+          </TableStyle>
+        </section>
+        <aside>
+          <Summary 
+            setProdsCart={setProdsCart} 
+            prodsCart={prodsCart}
+            formatToCurrency={formatToCurrency}
+          />
+        </aside>
+      </div>
+    </WrapperContentCart>
   )
 }

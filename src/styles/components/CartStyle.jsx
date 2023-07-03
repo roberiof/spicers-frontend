@@ -140,7 +140,7 @@ export const HandleAmountBtn = styled(PrimaryBtn)`
     padding: .2rem 0.5rem 0;
 `
 
-export const ClosingBtn = styled(PrimaryBtn)`
+export const DeleteBtn = styled(PrimaryBtn)`
   background-color: ${({theme}) => theme.colors.cartActionBtn};
   color: black;
   position: absolute;

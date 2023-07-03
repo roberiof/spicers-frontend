@@ -1,7 +1,8 @@
-import React from 'react'
+import React , {useState , useEffect} from 'react'
 
-import { PrimaryBtn } from '../../styles/components/UtilsStyles'
+import { SubmitBtn } from '../../styles/components/UtilsStyles'
 import styled from 'styled-components'
+import { getUserByEmailApi, updateUserApi } from '../../utils/GeralFunctions'
 
 const StyledForm = styled.form`
   margin-top:1rem;
@@ -55,31 +56,70 @@ const StyledForm = styled.form`
     margin-top: 1rem;
   }
 `
-export default function FormContactUs({text}){
+export default function FormContactUs(){
+  const defaultFormValues = {
+    name: '', 
+    email: '', 
+    phone:  '', 
+    message: ''
+  }
+  const [formValues, setFormValues] = useState(defaultFormValues)
+  const isAllInfoFilledUp = Object.values(formValues).every(item => item != '')
+  const [isSubmitBtnDisabled , setIsSubmitBtnDisabled] = useState(!isAllInfoFilledUp)
+
+  const handleInputChange = async({target}, objectKey) => {
+    setFormValues(prev => {
+      const newObj = {...prev}
+      newObj[objectKey] = target.value
+      return newObj 
+    })
+  }
+
+  const verifyUserValidity = async(e) => {
+    e.preventDefault()
+
+    const user = await getUserByEmailApi(formValues.email)
+    if(! user){
+      alert('This email is not registered! Please, create an account!')
+      return
+    }
+    
+    storeMessage(user)
+  }
+
+  const storeMessage = async(user) =>{
+    user.messages.push(formValues)
+    updateUserApi(user)
+    setFormValues(defaultFormValues)
+  }
   
+  useEffect(() => {
+    setIsSubmitBtnDisabled(!isAllInfoFilledUp);
+  }, [formValues]);
+
   return(
     <StyledForm>
         <div className="name-email-phone-div">
           <div>
             <label htmlFor="name"> Name<span style={{color: 'red'}}>*</span></label>
-            <input type='name' id="name" placeholder="Name" required/>
+            <input type='name' id="name" placeholder="Name" required value={formValues.name} onChange={(e) => handleInputChange(e , 'name')}/>
           </div>
 
           <div>
             <label htmlFor="email"> Email<span style={{color: 'red'}}>*</span></label>
-            <input type='email' id="email" placeholder="Email" required/>
+            <input type='email' id="email" placeholder="Email" required value={formValues.email} onChange={(e) => handleInputChange(e , 'email')}/>
           </div>
 
           <div>
             <label htmlFor="phone"> Phone <span style={{color: 'red'}}>*</span></label>
-            <input type='tel' pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" placeholder="Phone (xxx.xxx.xxxx)" id="phone" required/>
+            <input type='tel' pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" placeholder="Phone (xxx.xxx.xxxx)" id="phone" required value={formValues.phone} onChange={(e) => handleInputChange(e , 'phone')}/>
           </div>
         </div>
         <div className="message-div">
           <label htmlFor="message"> Message <span style={{color: 'red'}}>*</span></label>
-          <textarea placeholder="Message" id="message" required></textarea>
+          <textarea placeholder="Message" id="message" required value={formValues.message} onChange={(e) => handleInputChange(e , 'message')}></textarea>
         </div>
-        <PrimaryBtn type="submit" onClick={(e) => unavailableFeature(e)}> Submit </PrimaryBtn>
+        <SubmitBtn type="submit" onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)}> Submit </SubmitBtn>
     </StyledForm>
   )
 }

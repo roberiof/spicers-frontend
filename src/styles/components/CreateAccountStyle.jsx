@@ -1,17 +1,4 @@
 import styled from 'styled-components'
-import { PrimaryBtn } from './UtilsStyles'
-
-export const ViewIcon = styled.span`
-  cursor: pointer;
-  position: absolute;
-  padding-top: .5rem;
-  right: 3%;
-  z-index: 1;
-  color: ${({theme}) => theme.colors.lightText}; 
-  *{
-    pointer-events: none ;
-  }
-`
 
 export const FormStyled = styled.form`
   width: 95%;
@@ -39,12 +26,4 @@ export const FormStyled = styled.form`
       transform: scale(1.01)
     }
   }
-`
-
-export const SubmitBtn = styled(PrimaryBtn)`
-  padding: .8rem 1rem;
-  background-color: ${({theme , disabled_style}) => disabled_style === 'true' ? theme.colors.disabledButton : theme.colors.primary} !important;
-  color: #fff;
-  margin-top: 2rem;
-  cursor: pointer;
 `
