@@ -3,7 +3,7 @@ import React , {useEffect, useState , useRef} from 'react'
 import { getUserByIdApi, updateUserApi } from '../../../utils/GeralFunctions'
 
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
-import { MdOutlineCancel, MdOutlineFormatListNumbered } from 'react-icons/md'
+import { MdOutlineCancel } from 'react-icons/md'
 
 import styled from 'styled-components'
 import { Icon } from '../../../styles/components/HeaderStyle';

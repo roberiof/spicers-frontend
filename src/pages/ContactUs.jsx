@@ -1,6 +1,5 @@
 import React, {useEffect} from "react"
 
-import Header from "../components/Header";
 import FormContactUs from "../components/contactUs/FormContactUs";
 
 import { WrapperContent } from "../styles/components/WrapperContent";

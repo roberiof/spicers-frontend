@@ -4,7 +4,6 @@ import {formatToCurrency, getProductsApi, getLocalStorage, ProductsCartLSKey} fr
 
 import RowProduct from '../components/cart/RowProduct'
 import Summary from '../components/cart/Summary'
-import Header from '../components/Header'
 import { MdKeyboardBackspace } from 'react-icons/md'
 
 import { BackPageIcon } from '../styles/components/BackPageIcon'
