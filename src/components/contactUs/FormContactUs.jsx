@@ -64,8 +64,7 @@ export default function FormContactUs(){
     message: ''
   }
   const [formValues, setFormValues] = useState(defaultFormValues)
-  const isAllInfoFilledUp = Object.values(formValues).every(item => item != '')
-  const [isSubmitBtnDisabled , setIsSubmitBtnDisabled] = useState(!isAllInfoFilledUp)
+  const [isSubmitBtnDisabled , setIsSubmitBtnDisabled] = useState(true)
 
   const handleInputChange = async({target}, objectKey) => {
     setFormValues(prev => {
@@ -92,9 +91,18 @@ export default function FormContactUs(){
     updateUserApi(user)
     setFormValues(defaultFormValues)
   }
-  
+
+  const IsValidSubmitBtn = () => {
+    const isAllInfoFilledUp = Object.values(formValues).every(item => item != '')
+    const isPhoneNumberValid = (/^[0-9]{3}\.[0-9]{3}\.[0-9]{4}$/).test(formValues.phone)
+    return (
+      isAllInfoFilledUp && isPhoneNumberValid
+    )
+  }
+
   useEffect(() => {
-    setIsSubmitBtnDisabled(!isAllInfoFilledUp);
+    const response = IsValidSubmitBtn()
+    setIsSubmitBtnDisabled(!response);
   }, [formValues]);
 
   return(
