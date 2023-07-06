@@ -11,10 +11,9 @@ import { useNavigate } from "react-router-dom";
 export default function Header(){
   const nav = useRef()
   const [transparent, setTransparent] = useState(true)
-  const [opened , setOpened] = useState(false)
   const [activeHiddenMenu , setActiveHiddenMenu] = useState(false)
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate() 
+
   useEffect(() => {    
     const verifyTransparency = () =>{
       if(nav.current){
@@ -29,13 +28,8 @@ export default function Header(){
     return () => {
       document.removeEventListener('scroll', verifyTransparency)
     } 
-  } , [])
+  } , [document])
   
-  const openMenu = () =>{
-    setOpened(!opened) 
-    setActiveHiddenMenu(!opened)
-  }
-
   return (
     <>  
       <Navigator transparent={transparent} activeHiddenMenu={activeHiddenMenu} ref={nav}> 
@@ -46,11 +40,11 @@ export default function Header(){
           <LinkStyleHeader to='/login' itemBurgerMenu> Login </LinkStyleHeader>            
         </HiddenMenu> 
         <div>
-          <Icon showMobile type="hamburguer" onClick={() => openMenu()}> {opened ? <AiOutlineClose/> : <AiOutlineMenu/>} </Icon>
+          <Icon showMobile type="hamburguer" onClick={() => setActiveHiddenMenu(!activeHiddenMenu)}> {activeHiddenMenu ? <AiOutlineClose/> : <AiOutlineMenu/>} </Icon>
           <img src={logo}  alt="Logo" onClick={ () => navigate('/')}/>
           <LinkStyleHeader to='/aboutUs' hideMobile> ABOUT </LinkStyleHeader>
           <LinkStyleHeader to='/contactUs' hideMobile> CONTACT </LinkStyleHeader>
-          <LinkStyleHeader to='/cart'> <Icon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length !== 0 ?? false}> </AdvisorIcon></Icon> </LinkStyleHeader>
+          <LinkStyleHeader to='/cart'> <Icon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length}> </AdvisorIcon></Icon> </LinkStyleHeader>
           <LinkStyleHeader to='/login'> <Icon><RiAccountCircleLine/></Icon> </LinkStyleHeader>
         </div>
       </Navigator>
