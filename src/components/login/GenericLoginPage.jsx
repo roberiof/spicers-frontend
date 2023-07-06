@@ -5,6 +5,7 @@ import { UserIdLSKey, getUserByEmailApi, setLocalStorage } from '../../utils/Ger
 
 import styled from "styled-components";
 import {WrapperContent} from "../../styles/components/WrapperContent";
+import { PrimaryBtn } from '../../styles/components/UtilsStyles';
 
 const WrapperLogin = styled(WrapperContent)`
   p{
@@ -116,7 +117,7 @@ export default function GenericLoginPage({setIdUserLogged}){
             <label htmlFor="password"> Password <span style={{color: 'red'}}>*</span></label>
             <input type="password" id="password" placeholder="Password" required value={formValues.password} onChange={(e) => handleInputChange(e, 'password')}/>
           </div>
-          <button type="submit" onClick={(e) => verifyUserValidity(e)}> LOG IN </button>
+          <PrimaryBtn type="submit" onClick={(e) => verifyUserValidity(e)}> LOG IN </PrimaryBtn>
           <a href="#"> Forgot Your Password? </a>
         </form>
       </WrapperLogin>
@@ -124,7 +125,7 @@ export default function GenericLoginPage({setIdUserLogged}){
       <WrapperLogin h1PrimaryColor={true} isParagraphLight={true}>
         <h1> New Customers </h1>
         <p> Creating an account has many benefits: check out faster, keep more than one address, track orders and more. </p>
-        <button onClick={(() => navigate('/create-account'))}> CREATE AN ACCOUNT </button>
+        <PrimaryBtn onClick={(() => navigate('/create-account'))}> CREATE AN ACCOUNT </PrimaryBtn>
       </WrapperLogin>
     </>
   )
