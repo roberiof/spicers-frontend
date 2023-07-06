@@ -34,7 +34,7 @@ export default function Card({product, setProds}){
         setLocalStorage([...productsCart, product ] , ProductsCartLSKey)
       }
       setProds(prev => prev.map(item => item._id === product._id ? item = product : item))
-      // this guy is just for re-render my home component, i didn't find a better way to do it
+      // this guy is just for re-render my home component so the quantities be reorganized at home component, i didn't find a better way to do it
     }
   }
 
@@ -53,7 +53,7 @@ export default function Card({product, setProds}){
 
   return(
     <> 
-      <CardStyle>
+      <CardStyle> 
         <img src={product.image} alt="Product" />
         <div className="card-text">
           <p className="product-name"> {product.name} </p>
