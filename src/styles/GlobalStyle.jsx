@@ -31,5 +31,12 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({theme}) => theme.colors.lightText}
   }
 
-
+  @keyframes vibrate {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-5px) rotate(-2deg); }
+      40% { transform: translateX(5px) rotate(2deg); }
+      60% { transform: translateX(-3px) rotate(-1deg); }
+      80% { transform: translateX(3px) rotate(1deg); }
+      100% { transform: translateX(0); }
+    }
 `

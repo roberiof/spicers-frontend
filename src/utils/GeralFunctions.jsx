@@ -3,6 +3,14 @@ export const formatToCurrency = (item) =>{
   return Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(item)
 }
 
+export const errorMessageAnimation = (refButton , message) => {
+  refButton.current.style.animation = 'vibrate 0.3s infinite'
+  setTimeout( () => {
+    refButton.current.style.animation = ''
+    alert(message) 
+  }, 50)
+}
+
 // API 
 const api = 'http://localhost:3000'
 
