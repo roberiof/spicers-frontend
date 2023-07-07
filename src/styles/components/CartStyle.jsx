@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { PrimaryBtn } from "./UtilsStyles";
-import { WrapperContent } from './WrapperContent'
+import { WrapperContent } from './UtilsStyles'
 
 export const WrapperContentCart = styled(WrapperContent)`
   .content{

@@ -1,6 +1,6 @@
 import React , {useEffect} from 'react'
 
-import { WrapperContent } from "../styles/components/WrapperContent";
+import { WrapperContent } from "../styles/components/UtilsStyles";
 
 export default function AboutUs(){
   useEffect( () =>{

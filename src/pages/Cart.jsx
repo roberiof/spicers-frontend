@@ -6,7 +6,7 @@ import RowProduct from '../components/cart/RowProduct'
 import Summary from '../components/cart/Summary'
 import { MdKeyboardBackspace } from 'react-icons/md'
 
-import { BackPageIcon } from '../styles/components/BackPageIcon'
+import { BackPageIcon } from '../styles/components/UtilsStyles'
 import { TableStyle, WrapperContentCart} from '../styles/components/CartStyle';
 
 export default function Cart(){
