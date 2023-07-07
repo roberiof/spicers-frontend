@@ -1,8 +1,8 @@
-import React , {useState , useEffect} from 'react'
+import React , {useState , useEffect , useRef} from 'react'
 
-import { SubmitBtn } from '../../styles/components/UtilsStyles'
+import { PrimaryInput, SubmitBtn } from '../../styles/components/UtilsStyles'
 import styled from 'styled-components'
-import { getUserByEmailApi, updateUserApi } from '../../utils/GeralFunctions'
+import { getUserByEmailApi, updateUserApi , errorMessageAnimation} from '../../utils/GeralFunctions'
 
 const StyledForm = styled.form`
   margin-top:1rem;
@@ -37,23 +37,21 @@ const StyledForm = styled.form`
     }
   }
    
-  textarea, input{
+  textarea{
     background-color: ${({theme}) => theme.colors.input};
     border: 0;
-    outline: none;
+    outline-width: 1px;
     border-radius: 5px;
     transition: 200ms all;
     &:focus{
-      box-shadow: 0px 0px 3px 0px #000000; 
+      background-color: #f7d8d8;
+      box-shadow: 0px 0px 3px 0px #D80A30; 
       transform: scale(1.01)
     }
   }
 
   button{
-    padding: .8rem 1rem;
-    background-color: ${({theme}) => theme.colors.primary};
-    color: #ffffff;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 `
 export default function FormContactUs(){
@@ -65,6 +63,7 @@ export default function FormContactUs(){
   }
   const [formValues, setFormValues] = useState(defaultFormValues)
   const [isSubmitBtnDisabled , setIsSubmitBtnDisabled] = useState(true)
+  const submitBtn = useRef()
 
   const handleInputChange = async({target}, objectKey) => {
     setFormValues(prev => {
@@ -79,7 +78,7 @@ export default function FormContactUs(){
 
     const user = await getUserByEmailApi(formValues.email)
     if(! user){
-      alert('This email is not registered! Please, create an account!')
+      errorMessageAnimation(submitBtn , 'This email is not registered! Please, create an account!')
       return
     }
     
@@ -109,25 +108,25 @@ export default function FormContactUs(){
     <StyledForm>
         <div className="name-email-phone-div">
           <div>
-            <label htmlFor="name"> Name<span style={{color: 'red'}}>*</span></label>
-            <input type='name' id="name" placeholder="Name" required value={formValues.name} onChange={(e) => handleInputChange(e , 'name')}/>
+            <label htmlFor="name"> Name <span style={{color: 'red'}}>*</span></label>
+            <PrimaryInput type='name' id="name" placeholder="Name" required value={formValues.name} onChange={(e) => handleInputChange(e , 'name')}/>
           </div>
 
           <div>
-            <label htmlFor="email"> Email<span style={{color: 'red'}}>*</span></label>
-            <input type='email' id="email" placeholder="Email" required value={formValues.email} onChange={(e) => handleInputChange(e , 'email')}/>
+            <label htmlFor="email"> Email <span style={{color: 'red'}}>*</span></label>
+            <PrimaryInput type='email' id="email" placeholder="Email" required value={formValues.email} onChange={(e) => handleInputChange(e , 'email')}/>
           </div>
 
           <div>
             <label htmlFor="phone"> Phone <span style={{color: 'red'}}>*</span></label>
-            <input type='tel' pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" placeholder="Phone (xxx.xxx.xxxx)" id="phone" required value={formValues.phone} onChange={(e) => handleInputChange(e , 'phone')}/>
+            <PrimaryInput type='tel' pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" placeholder="Phone (xxx.xxx.xxxx)" id="phone" required value={formValues.phone} onChange={(e) => handleInputChange(e , 'phone')}/>
           </div>
         </div>
         <div className="message-div">
           <label htmlFor="message"> Message <span style={{color: 'red'}}>*</span></label>
           <textarea placeholder="Message" id="message" required value={formValues.message} onChange={(e) => handleInputChange(e , 'message')}></textarea>
         </div>
-        <SubmitBtn type="submit" onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)}> Submit </SubmitBtn>
+        <SubmitBtn type="submit" ref={submitBtn} onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)}> Submit </SubmitBtn>
     </StyledForm>
   )
 }

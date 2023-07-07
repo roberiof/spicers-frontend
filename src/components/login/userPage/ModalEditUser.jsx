@@ -1,13 +1,13 @@
 import React , {useEffect, useState , useRef} from 'react'
 
-import { getUserByIdApi, updateUserApi } from '../../../utils/GeralFunctions'
+import { errorMessageAnimation, getUserByEmailApi, getUserByIdApi, updateUserApi } from '../../../utils/GeralFunctions'
 
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
 import { MdOutlineCancel } from 'react-icons/md'
 
 import styled from 'styled-components'
 import { Icon } from '../../../styles/components/HeaderStyle';
-import  { ViewIcon } from '../../../styles/components/UtilsStyles'
+import  { PrimaryInput, ViewIcon } from '../../../styles/components/UtilsStyles'
 import { SubmitBtn } from '../../../styles/components/UtilsStyles'
 
 const StyledForm = styled.form`
@@ -27,19 +27,6 @@ const StyledForm = styled.form`
     margin-top: 1rem;
   }
 
-  input{
-    width:100%;
-    padding: .8rem .5rem;
-    background-color: ${({theme}) => theme.colors.input};
-    border: 0;
-    outline: none;
-    border-radius: 5px;
-    &:focus{
-      box-shadow: 0px 0px 3px 0px #000000; 
-      transform: scale(1.01)
-    }
-  } 
-
   button{
     display: block;
     margin: 2rem auto 0rem;
@@ -58,8 +45,11 @@ export default function ModalEditUser({setIsModalOpen, user ,setUser}){
     password: false,
     confirmationPassword: false
   }) 
-  const hasEmailChanged = useRef(false)
   const [isSubmitBtnDisabled , setIsSubmitBtnDisabled] = useState(true)
+  const hasEmailChanged = useRef(false)
+  const submitBtn = useRef()
+  const passwordInput = useRef() 
+  const confirmationPasswordInput = useRef()
 
   const handleInputChange = ({target}, objectKey) => {
     setFormValues(prev => {
@@ -70,6 +60,13 @@ export default function ModalEditUser({setIsModalOpen, user ,setUser}){
   }
 
   const handleShowPassword = (divKey) => {
+    if(divKey === 'password'){
+      passwordInput.current.focus()
+    }
+    if(divKey === 'confirmationPassword'){
+      confirmationPasswordInput.current.focus()
+    }
+
     setIsShowPasswordActive(prev => {
       const newObj = {...prev}
       newObj[divKey] = !newObj[divKey]
@@ -104,28 +101,22 @@ export default function ModalEditUser({setIsModalOpen, user ,setUser}){
   }
 
   const isUserExistent = async() => {
-    const user = await getUserByIdApi(formValues.email)
-
-    if( user ) {
-      alert('This email is already registered!')
-      return true
-    }
-
-    return false
+    const user = await getUserByEmailApi(formValues.email)
+    return user !== null
    }
 
   const verifyUserValidity = async(e) => {
     e.preventDefault()
 
     if( hasEmailChanged.current ){
-      const response = await isUserExistent() 
-      if(response){
-        return
+      if( await isUserExistent() ) {
+        errorMessageAnimation(submitBtn , 'This email is already registered!')
+        return 
       }
     }
 
     if(formValues.password !== formValues.confirmationPassword){
-      alert("The new passwords don't match!")
+      errorMessageAnimation(submitBtn , "The passwords don't match!")
       return
     }
 
@@ -151,33 +142,33 @@ export default function ModalEditUser({setIsModalOpen, user ,setUser}){
 
 
   return(
-    <StyledForm>
+  <StyledForm>
         <Icon style={{marginLeft: '95%'}} onClick={() => setIsModalOpen(prev => !prev)}> <MdOutlineCancel/></Icon>
 
         <hr/>
         
         <div> 
           <label htmlFor="name"> Name </label>
-          <input type="text" placeholder='Name' value={formValues.name} onChange={(e) => handleInputChange(e , 'name')}/>
+          <PrimaryInput type="text" placeholder='Name' value={formValues.name} onChange={(e) => handleInputChange(e , 'name')}/>
         </div>
 
         <div> 
           <label htmlFor="email"> Email </label>
-          <input type="text"  placeholder='Email' value={formValues.email} onChange={(e) => handleInputChange(e , 'email')}/>
+          <PrimaryInput type="text"  placeholder='Email' value={formValues.email} onChange={(e) => handleInputChange(e , 'email')}/>
         </div>
 
         <div> 
           <label htmlFor="password"> Password </label>
-          <input type={isShowPasswordActive.password ? 'text' : 'password' } placeholder='Password' value={formValues.password} onChange={(e) => handleInputChange(e , 'password')}/>
+          <PrimaryInput type={isShowPasswordActive.password ? 'text' : 'password' } ref={passwordInput} placeholder='Password' value={formValues.password} onChange={(e) => handleInputChange(e , 'password')}/>
           <ViewIcon onClick={() => handleShowPassword('password')}>  {isShowPasswordActive.password ? <AiFillEyeInvisible/> : <AiFillEye/> } </ViewIcon>
         </div>
 
         <div> 
           <label htmlFor="confirmationPassword"> Password Again </label>
-          <input type={isShowPasswordActive.confirmationPassword ? 'text' : 'password'} placeholder='Password again' value={formValues.confirmationPassword} onChange={(e) => handleInputChange(e , 'confirmationPassword')}/>
+          <PrimaryInput type={isShowPasswordActive.confirmationPassword ? 'text' : 'password'} ref={confirmationPasswordInput} placeholder='Password again' value={formValues.confirmationPassword} onChange={(e) => handleInputChange(e , 'confirmationPassword')}/>
           <ViewIcon onClick={() => handleShowPassword('confirmationPassword')}>  {isShowPasswordActive.confirmationPassword ? <AiFillEyeInvisible/> : <AiFillEye/> } </ViewIcon>
         </div>
-        <SubmitBtn className="register-btn" type="submit" disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)} onClick={(e) => verifyUserValidity(e)}> Confirm </SubmitBtn>
+        <SubmitBtn ref={submitBtn} className="register-btn" type="submit" disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)} onClick={(e) => verifyUserValidity(e)}> Confirm </SubmitBtn>
   </StyledForm>
   )
 }
