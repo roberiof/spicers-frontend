@@ -3,10 +3,9 @@ import { UserIdLSKey, clearLocalStorage, getUserByIdApi } from "../../utils/Gera
 import { useNavigate } from 'react-router-dom';
 
 import ModalEditUser from './userPage/ModalEditUser';
-import CreateProductSection from './CreateProductSection';
 
 import styled from "styled-components";
-import { WrapperContent } from "../../styles/components/WrapperContent";
+import { WrapperContent } from "../../styles/components/UtilsStyles";
 import { LinkStyle } from '../../styles/components/UtilsStyles';
 import { PrimaryBtn } from '../../styles/components/UtilsStyles';
 
@@ -58,7 +57,6 @@ const StyledModalBg = styled.div`
 `
 
 export default function UserLoginPage({idUserLogged}){
-  const [isStoreAdministrator , setIsStoreAdministrator] = useState(false)
   const [user, setUser] = useState('')
   const [isModalOpen , setIsModalOpen] = useState(false)
   const navigate = useNavigate()
@@ -76,7 +74,7 @@ export default function UserLoginPage({idUserLogged}){
   }
 
   return(
-    <WrapperContent h1PrimaryColor={true}>
+    <WrapperContent h1PrimaryColor={true} style={{maxWidth: "800px"}}>
       <h1> Welcome </h1>
 
       <section>
@@ -120,7 +118,6 @@ export default function UserLoginPage({idUserLogged}){
         </div>
       </section>
 
-      {isStoreAdministrator ? <CreateProductSection/> : <></>}
 
       <LeaveButton onClick={() => handleUserLogOut()}> Leave </LeaveButton>
     </WrapperContent>
