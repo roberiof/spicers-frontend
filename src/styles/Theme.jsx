@@ -14,6 +14,7 @@ const theme = {
     tableBorder: "#b4b4b4",
     disabledButton: "#b4b4b4",
     input: "#f3ecec",
+    inputFocus: "#cc687a",
     soldOutBtn : "#c5c2c2",
     lightText: "#808080",
     helpInfoDiv: "#808080"

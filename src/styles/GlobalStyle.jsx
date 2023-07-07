@@ -8,7 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: ${({theme}) => theme.fonts.primary};
     font-weight: 400;
-  }
+    outline-color: ${({theme}) => theme.colors.inputFocus};
+  } 
 
   body{
     height: 100%;
