@@ -5,14 +5,16 @@ import { Navigator , LinkStyleHeader, Icon, AdvisorIcon, HiddenMenu} from "../st
 
 import logo from '../assets/logo.png'
 import { getLocalStorage, ProductsCartLSKey } from '../utils/GeralFunctions';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState , useContext } from 'react';
 import { useNavigate } from "react-router-dom";
+import { ProductsContext } from '../context/ProductsContext';
 
 export default function Header(){
   const nav = useRef()
   const [transparent, setTransparent] = useState(true)
   const [activeHiddenMenu , setActiveHiddenMenu] = useState(false)
   const navigate = useNavigate() 
+  const { prods } = useContext(ProductsContext)
 
   useEffect(() => {    
     const verifyTransparency = () =>{

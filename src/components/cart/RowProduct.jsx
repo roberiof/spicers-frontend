@@ -3,9 +3,12 @@ import {formatToCurrency, updateProductApi, setLocalStorage, getLocalStorage, Pr
 import {AiOutlineDelete , AiOutlinePlus ,AiOutlineMinus} from 'react-icons/ai'
 
 import { HandleAmountBtn , DeleteBtn} from '../../styles/components/CartStyle';
+import { useContext } from 'react';
+import { ProductsContext } from '../../context/ProductsContext';
 
 export default function RowProduct({product, setProdsCart}){
   const [amountWanted, setAmountWanted] = useState(product.amountWanted)
+  const { setProds } = useContext(ProductsContext)
 
   const handleAmount = (className) =>{
     if(className.includes('lower') && amountWanted>1){
@@ -26,6 +29,7 @@ export default function RowProduct({product, setProdsCart}){
   const deleteProduct = () =>{
     product.amountWanted = 0 
     updateProductApi(product)
+    setProds( prev => prev.map( item => item._id ===  product._id ? item = product : item))
     setProdsCart( prev => prev.filter( item => item._id !== product._id)) 
     const newLocalStorage = getLocalStorage(ProductsCartLSKey).filter(item => item._id !== product._id)
     setLocalStorage(newLocalStorage, ProductsCartLSKey)

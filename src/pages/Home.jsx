@@ -3,9 +3,12 @@ import  { getProductsApi } from '../utils/GeralFunctions'
 import Card from '../components/home/Card'
 
 import { WrapperHome, WrapperCards } from '../styles/components/HomeStyle'
+import { useContext } from 'react'
+import { ProductsContext } from '../context/ProductsContext'
 
 export default function Home(){
-  const [prods, setProds] = useState([])
+  // const [prods, setProds] = useState([])
+  const { prods , setProds } = useContext(ProductsContext)
 
   useEffect( () => {
     getProductsApi().then(data => setProds(data))
