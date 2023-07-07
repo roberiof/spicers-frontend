@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect , useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { UserIdLSKey, getUserByEmailApi, setLocalStorage } from '../../utils/GeralFunctions';
 
 import styled from "styled-components";
 import {WrapperContent} from "../../styles/components/WrapperContent";
-import { PrimaryBtn } from '../../styles/components/UtilsStyles';
+import { PrimaryBtn, SubmitBtn } from '../../styles/components/UtilsStyles';
+import { ViewIcon } from '../../styles/components/UtilsStyles';
+import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
+
 
 const WrapperLogin = styled(WrapperContent)`
   p{
@@ -20,13 +23,21 @@ const WrapperLogin = styled(WrapperContent)`
     div{
       display: flex;
       flex-direction: column;
+      position: relative;
+      span{
+        margin-top: 2rem;
+        // little change to make the viewIcon enter inside the input!
+      }
     }
     input{
       padding: .8rem .5rem;
     }
-    a{
+    a{  
       display: block;
-      margin-top: .5rem;
+      width: 200px;
+      margin-inline: auto;
+      padding: 5px 10px;
+      margin-top: 1rem;
       text-align:center;
       text-decoration: none ;
       color: #000000;
@@ -50,11 +61,12 @@ const WrapperLogin = styled(WrapperContent)`
     background-color: ${({theme}) => theme.colors.input};
     display:block;
     border: 0;
-    outline: none;
+    outline-width: 1px;
     border-radius: 5px;
     transition: 200ms all;
     &:focus{
-      box-shadow: 0px 0px 3px 0px #000000; 
+      background-color: #f7d8d8;
+      box-shadow: 0px 0px 3px 0px #D80A30; 
       transform: scale(1.01)
     }
   }
@@ -67,6 +79,9 @@ export default function GenericLoginPage({setIdUserLogged}){
     password: ''
   }
   const [ formValues , setFormValues ] = useState(defaultFormValues)
+  const [isSubmitBtnDisabled , setIsSubmitBtnDisabled] = useState(true)
+  const [isShowPasswordActive , setIsShowPasswordActive] = useState(false)
+  const passwordInput = useRef()
 
   const handleInputChange = (event , key) =>{
     setFormValues( prev => {
@@ -78,11 +93,6 @@ export default function GenericLoginPage({setIdUserLogged}){
 
   const verifyUserValidity = async(e) =>{  
     e.preventDefault()
-
-    if(!formValues.email || !formValues.password){
-      alert('Please, fill all info before log in.')
-      return
-    }
 
     const user = await getUserByEmailApi(formValues.email)
 
@@ -100,8 +110,24 @@ export default function GenericLoginPage({setIdUserLogged}){
   
   const redirectToUserLoginPage = (user) => {
     setIdUserLogged(user._id)
-    setLocalStorage(user._id , UserIdLSKey) 
+    setLocalStorage([user._id] , UserIdLSKey) 
   }
+
+  const handlePasswordActive = () =>{
+    setIsShowPasswordActive(!isShowPasswordActive)
+    passwordInput.current.focus()
+  }
+  const IsValidSubmitBtn = () => {
+    const isAllInfoFilledUp = Object.values(formValues).every(item => item != '')
+    return (
+      isAllInfoFilledUp
+    )
+  }
+
+  useEffect(() => {
+    const response = IsValidSubmitBtn()
+    setIsSubmitBtnDisabled(!response);
+  }, [formValues]);
 
   return(
     <>
@@ -115,9 +141,11 @@ export default function GenericLoginPage({setIdUserLogged}){
           </div>
           <div>
             <label htmlFor="password"> Password <span style={{color: 'red'}}>*</span></label>
-            <input type="password" id="password" placeholder="Password" required value={formValues.password} onChange={(e) => handleInputChange(e, 'password')}/>
+            <input type={isShowPasswordActive ? "text" : "password" } id="password" ref={passwordInput} placeholder="Password" required value={formValues.password} onChange={(e) => handleInputChange(e, 'password')}/>
+            <ViewIcon tabIndex="0" onClick={() => handlePasswordActive()}>  {isShowPasswordActive ? <AiFillEyeInvisible/> : <AiFillEye/> } </ViewIcon>
           </div>
-          <PrimaryBtn type="submit" onClick={(e) => verifyUserValidity(e)}> LOG IN </PrimaryBtn>
+          <SubmitBtn type="submit" onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)
+          }> LOG IN </SubmitBtn>
           <a href="#"> Forgot Your Password? </a>
         </form>
       </WrapperLogin>
