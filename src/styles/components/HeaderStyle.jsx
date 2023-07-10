@@ -83,6 +83,7 @@ export const Icon = styled.span`
 export const AdvisorIcon = styled.span`
   display: ${({show}) => show ? 'static' : 'none'};;
   position: absolute; 
+  right: -5px;
   font-size: 1px;
   z-index: 100;
   padding: 3px;

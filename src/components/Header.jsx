@@ -67,7 +67,7 @@ export default function Header(){
         <HiddenMenu active={activeHiddenMenu}>
           <LinkStyleHeader to='/aboutUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <BiMedal/> </Icon> About </LinkStyleHeader>
           <LinkStyleHeader to='/contactUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <MdOutlineForwardToInbox/> </Icon> Contact </LinkStyleHeader>            
-          <LinkStyleHeader to='/cart' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <TiShoppingCart/> </Icon> Cart </LinkStyleHeader>            
+          <LinkStyleHeader to='/cart' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length}> </AdvisorIcon> </Icon> Cart </LinkStyleHeader>            
           <LinkStyleHeader to='/login' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <RiAccountCircleLine/> </Icon> Login </LinkStyleHeader>            
         </HiddenMenu> 
       </Navigator>
