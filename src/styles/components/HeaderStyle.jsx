@@ -17,7 +17,7 @@ export const Navigator = styled.nav`
   top: 0%;
   z-index: 1;
   padding: 1.5rem 3rem;
-  div{
+  .wrapper{
     max-width: 400px;
     display: flex; 
     gap: 2rem;
@@ -39,19 +39,28 @@ export const LinkStyleHeader = styled(LinkStyle)`
   ${({ itemBurgerMenu  }) => {
     if(itemBurgerMenu) {
       return css`
-        padding: 1rem 2rem;
-        text-align: center;
+        font-size: 1.2rem;
+        padding: 1.2rem 3rem;
+        text-align: start;
       ` 
     } 
   }}
 
+  svg{
+    font-size: 1.5rem !important;
+  }
+  // makes icons a little smaller!
+
   @media (max-width: ${({theme}) => theme.medias.sm}) {
-    display: ${({hideMobile}) => hideMobile ? 'none' : 'block'};
+    display: ${({hideMobile}) => hideMobile ? 'none' : 'flex'};
+    gap: 10px;
+    align-items: center;
+
   }
 `
 
 export const Icon = styled.span`
-  display: ${({showMobile}) => showMobile ? 'none' : 'block'};
+  display: ${({showMobile}) => showMobile ? 'none' : 'flex'};
   position: relative !important;
   svg{
     cursor: pointer;
@@ -67,7 +76,7 @@ export const Icon = styled.span`
   } 
 
   @media (max-width: ${({theme}) => theme.medias.sm}){
-    display: block;
+    display: flex;
   }
 `
 
@@ -81,12 +90,60 @@ export const AdvisorIcon = styled.span`
   background-color: ${({theme}) => theme.colors.success};
 `
 
+export const StyledBurgerIcon = styled.button`
+  position: absolute;
+  right: 3rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+
+  @media (max-width: ${({theme}) => theme.medias.sm}){
+    display: flex;
+  }
+
+  div {
+    width: 2rem;
+    height: 0.25rem;
+    background-color: ${({ theme }) => theme.colors.primary};
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+
+    :first-child {
+      transform: ${({ active }) => active ? 'rotate(45deg)' : 'rotate(0)'};
+    }
+
+    :nth-child(2) {
+      opacity: ${({ active }) => active ? '0' : '1'};
+      transform: ${({ active }) => active ? 'translateX(20px)' : 'translateX(0)'};
+    }
+
+    :nth-child(3) {
+      transform: ${({ active }) => active ? 'rotate(-45deg)' : 'rotate(0)'};
+    }
+  }
+`
+
 export const HiddenMenu = styled.div`
-  transition: all 300ms;
-  display: ${({active}) => active ? 'block' : 'none'} !important;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: ${({theme}) => theme.colors.secondaryDarker};
+  transform: ${({ active }) => active ? 'translateX(0)' : 'translateX(-100%)'};
+  transition: transform 0.3s ease-in-out;
+  height: 100vh;
   position: absolute;
   top: 100%;
-  margin-left: -3rem;
-  color: #ffffff;
-  background-color: ${({theme}) => theme.colors.secondaryDarker};
+  left: 0; 
+  padding-top: 1rem;
+  padding-right: 5rem;
+  padding-left: 0;
 `

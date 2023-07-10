@@ -1,7 +1,8 @@
-import { RiAccountCircleLine , RiAccountCircleFill} from 'react-icons/ri';
+import { RiAccountCircleLine } from 'react-icons/ri';
 import { TiShoppingCart } from 'react-icons/ti'
-import {AiOutlineMenu , AiOutlineClose} from 'react-icons/ai'
-import { Navigator , LinkStyleHeader, Icon, AdvisorIcon, HiddenMenu} from "../styles/components/HeaderStyle";
+import { BiMedal } from 'react-icons/bi' 
+import { MdOutlineForwardToInbox } from 'react-icons/md' 
+import { Navigator , LinkStyleHeader, Icon, AdvisorIcon, HiddenMenu , StyledBurgerIcon} from "../styles/components/HeaderStyle";
 
 import logo from '../assets/logo.png'
 import { getLocalStorage, ProductsCartLSKey } from '../utils/GeralFunctions';
@@ -15,6 +16,11 @@ export default function Header(){
   const [activeHiddenMenu , setActiveHiddenMenu] = useState(false)
   const navigate = useNavigate() 
   const { prods } = useContext(ProductsContext)
+
+  const backHomeAndCloseMenu = () => {
+    setActiveHiddenMenu(false)
+    navigate('/')
+  }
 
   useEffect(() => {    
     const verifyTransparency = () =>{
@@ -35,20 +41,35 @@ export default function Header(){
   return (
     <>  
       <Navigator transparent={transparent} activeHiddenMenu={activeHiddenMenu} ref={nav}> 
-        <HiddenMenu active={activeHiddenMenu}>
-          <LinkStyleHeader to='/aboutUs' itemBurgerMenu> About </LinkStyleHeader>
-          <LinkStyleHeader to='/contactUs' itemBurgerMenu> Contact </LinkStyleHeader>            
-          <LinkStyleHeader to='/cart' itemBurgerMenu> Cart </LinkStyleHeader>            
-          <LinkStyleHeader to='/login' itemBurgerMenu> Login </LinkStyleHeader>            
-        </HiddenMenu> 
-        <div>
-          <Icon showMobile type="hamburguer" onClick={() => setActiveHiddenMenu(!activeHiddenMenu)}> {activeHiddenMenu ? <AiOutlineClose/> : <AiOutlineMenu/>} </Icon>
-          <img src={logo}  alt="Logo" onClick={ () => navigate('/')}/>
-          <LinkStyleHeader to='/aboutUs' hideMobile> ABOUT </LinkStyleHeader>
-          <LinkStyleHeader to='/contactUs' hideMobile> CONTACT </LinkStyleHeader>
-          <LinkStyleHeader to='/cart'> <Icon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length}> </AdvisorIcon></Icon> </LinkStyleHeader>
-          <LinkStyleHeader to='/login'> <Icon><RiAccountCircleLine/></Icon> </LinkStyleHeader>
+        <div className='wrapper'>
+          <img src={logo}  alt="Logo" onClick={() => backHomeAndCloseMenu()}/>
+
+          <StyledBurgerIcon showMobile active={activeHiddenMenu} onClick={() => setActiveHiddenMenu(!activeHiddenMenu)}> 
+            <div></div>
+            <div></div>
+            <div></div>
+          </StyledBurgerIcon>
+
+          <LinkStyleHeader to='/aboutUs' hideMobile> 
+            ABOUT 
+          </LinkStyleHeader>
+          <LinkStyleHeader to='/contactUs' hideMobile>
+            CONTACT 
+          </LinkStyleHeader>
+          <LinkStyleHeader to='/cart' hideMobile>
+             <Icon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length}> </AdvisorIcon></Icon> 
+          </LinkStyleHeader>
+          <LinkStyleHeader to='/login' hideMobile> 
+            <Icon> <RiAccountCircleLine/> </Icon>
+           </LinkStyleHeader>
         </div>
+
+        <HiddenMenu active={activeHiddenMenu}>
+          <LinkStyleHeader to='/aboutUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <BiMedal/> </Icon> About </LinkStyleHeader>
+          <LinkStyleHeader to='/contactUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <MdOutlineForwardToInbox/> </Icon> Contact </LinkStyleHeader>            
+          <LinkStyleHeader to='/cart' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <TiShoppingCart/> </Icon> Cart </LinkStyleHeader>            
+          <LinkStyleHeader to='/login' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <RiAccountCircleLine/> </Icon> Login </LinkStyleHeader>            
+        </HiddenMenu> 
       </Navigator>
     </>
   )
