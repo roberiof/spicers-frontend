@@ -21,7 +21,7 @@ const theme = {
   },
   medias: {
     sm: '520px',
-    m: '700px',
+    m: '715px',
   },
   fonts: {
     primary: "Rubik, sans-serif"

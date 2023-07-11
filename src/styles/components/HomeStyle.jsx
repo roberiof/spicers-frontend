@@ -49,7 +49,7 @@ export const WrapperHome = styled.div`
 
 export const WrapperCards = styled.div`
   width: 90%;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: auto;
   padding-block: 5rem;
   display: flex;
@@ -60,15 +60,15 @@ export const WrapperCards = styled.div`
 
 export const CardStyle = styled.div`
   width: 20rem;
-  height: 36rem;
+  height: 31rem;
   box-shadow: 0px 0px 5px 0px black;
   display: flex;
   justify-content: space-between;
   flex-direction:column;
   img{
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
-    height: 25rem;
+    height: 20rem;
   }
   .card-text{
     padding: 1rem;
@@ -94,7 +94,7 @@ export const CardStyle = styled.div`
     select{
       border-width: 0px 1px 0px 0px;
       text-align: center;
-      width: 25%;
+      width: 30%;
       color: #ffffff;
       background-color: ${({theme}) => theme.colors.primary};
       border-radius: 10px 0px 0px 10px;
@@ -111,6 +111,25 @@ export const CardStyle = styled.div`
       }
     }
   }
+
+  @media (max-width: ${({theme}) => theme.medias.m}){
+    width: 10rem;
+    height: 21rem;
+    font-size: .8rem;
+    img{
+      width: 100%;
+      height: 10rem;
+    }
+    .add-div *{
+      font-size: 0.7rem;
+    }
+ 
+    .price{
+      font-size: 1rem !important;
+    }
+    }
+    
+  }
 `
 
 export const StockInfo = styled.div`
@@ -121,12 +140,16 @@ export const StockInfo = styled.div`
   color: #ffffff;
   font-weight: 500;
   font-size: .9rem;
+  @media (max-width: ${({theme}) => theme.medias.m}){
+    font-size: .65rem;
+    padding-inline: .5rem;
+  }
 ` 
   
 export const AddCartBtn = styled(PrimaryBtn)`   
   background-color: ${({theme}) => theme.colors.primary};
   color: #ffffff;
-  width: 75%;
+  width: 70%;
   padding: 0.5rem 1rem;
   border-radius: 0px 10px 10px 0px;
 `
