@@ -16,8 +16,10 @@ export const Navigator = styled.nav`
   position: fixed;
   top: 0%;
   z-index: 1;
-  padding: 1.5rem 3rem;
+  padding-block: 2rem;
+  padding-inline: ${({ transparent }) => (transparent) ? '8%' : '6%'};
   .wrapper{
+    position: relative;
     max-width: 400px;
     display: flex; 
     gap: 2rem;
@@ -32,6 +34,7 @@ export const Navigator = styled.nav`
   @media (max-width: ${({theme}) => theme.medias.m}){
     width: 100%;
     justify-content: center;
+    padding-inline: ${({ transparent }) => (transparent) ? '12%' : '10%'};
   }
 `
 
@@ -93,7 +96,7 @@ export const AdvisorIcon = styled.span`
 
 export const StyledBurgerIcon = styled.button`
   position: absolute;
-  right: 3rem;
+  right: 0;
   display: none;
   flex-direction: column;
   justify-content: space-around;

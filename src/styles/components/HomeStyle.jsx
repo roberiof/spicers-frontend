@@ -14,7 +14,7 @@ export const WrapperHome = styled.div`
       color: #ffffff;
       max-width: 700px;
       position: absolute;
-      left: 3rem;
+      left: 8%;
       top:50%;
       transform: translateY(-50%);
       
