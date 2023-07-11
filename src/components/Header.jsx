@@ -1,7 +1,7 @@
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { TiShoppingCart } from 'react-icons/ti'
 import { BiMedal } from 'react-icons/bi' 
-import { MdOutlineForwardToInbox } from 'react-icons/md' 
+import { MdMargin, MdOutlineForwardToInbox } from 'react-icons/md' 
 import { Navigator , LinkStyleHeader, Icon, AdvisorIcon, HiddenMenu , StyledBurgerIcon} from "../styles/components/HeaderStyle";
 
 import logo from '../assets/logo.png'
@@ -48,6 +48,7 @@ export default function Header(){
             <div></div>
             <div></div>
             <div></div>
+            <AdvisorIcon show={getLocalStorage(ProductsCartLSKey).length} style={{marginTop: '-2rem'}}/>
           </StyledBurgerIcon>
 
           <LinkStyleHeader to='/aboutUs' hideMobile> 
