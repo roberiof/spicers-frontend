@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext, useEffect } from 'react'
 
-import { updateUserApi , getUserByEmailApi , errorMessageAnimation, getLocalStorage, UserIdLSKey } from '../../../utils/GeralFunctions'
+import { updateUserApi , getUserByEmailApi , errorMessageAnimation, getLocalStorage, UserIdLSKey, getUserByIdApi } from '../../../utils/GeralFunctions'
 
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../../context/UserContext'
@@ -24,6 +24,7 @@ const UserForm = styled.form`
         position: relative;
     }  
 `
+
 const UserInfo = () => {    
     const navigate = useNavigate()
     const { user , setUser } = useContext(UserContext)
@@ -169,13 +170,24 @@ const UserInfo = () => {
 
     } , [formValues])
 
+    useEffect(() =>{
+        setFormValues({
+            name: user.name,
+            email: user.email,
+            password: user.password
+        })
+    }, [user])
+
+    useEffect(() => {
+        getUserByIdApi(getLocalStorage(UserIdLSKey)).then(data => setUser(data))
+    }, [])
+
     return (
         <WrapperContent style={{maxWidth: '680px'}}>
             <BackPageIcon page={"login"}  onClick={() => navigate('/login')}>
                 <MdKeyboardBackspace/>
             </BackPageIcon> 
             <h2 style={{textAlign: 'center', marginBottom: '2rem'}}> Overview </h2>
-
 
             <UserForm>
                 <div> 
