@@ -41,16 +41,6 @@ export const postUserApi= async(user) => {
   })
 }
 
-export const getUsersApi = async() => {
-  const response = await fetch(`${api}/users` , {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-  return response 
-}
-
 export const getUserByIdApi = async(id) => {
   const response = await fetch(`${api}/users/id/${id}`).then(data => data.json())
   return response 
