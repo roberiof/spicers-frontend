@@ -62,27 +62,6 @@ export const LinkStyleHeader = styled(LinkStyle)`
   }
 `
 
-export const Icon = styled.span`
-  display: ${({showMobile}) => showMobile ? 'none' : 'flex'};
-  position: relative !important;
-  svg{
-    cursor: pointer;
-    font-size: 1.8rem;
-    color: ${({theme}) => theme.colors.primary};
-    &:hover{
-      transition: all 100ms; 
-      transform: scale(1.125);
-    }
-    *{
-      pointer-events: none;
-    }
-  } 
-
-  @media (max-width: ${({theme}) => theme.medias.sm}){
-    display: flex;
-  }
-`
-
 export const AdvisorIcon = styled.span`
   display: ${({show}) => show ? 'static' : 'none'};;
   position: absolute; 

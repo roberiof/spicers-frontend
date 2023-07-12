@@ -2,7 +2,8 @@ import { RiAccountCircleLine } from 'react-icons/ri';
 import { TiShoppingCart } from 'react-icons/ti'
 import { BiMedal } from 'react-icons/bi' 
 import { MdOutlineForwardToInbox } from 'react-icons/md' 
-import { Navigator , LinkStyleHeader, Icon, AdvisorIcon, HiddenMenu , StyledBurgerIcon} from "../styles/components/HeaderStyle";
+import { Navigator , LinkStyleHeader, AdvisorIcon, HiddenMenu , StyledBurgerIcon} from "../styles/components/HeaderStyle";
+import { PrimaryIcon } from '../styles/components/UtilsStyles';
 
 import logo from '../assets/logo.png'
 import { getLocalStorage, ProductsCartLSKey } from '../utils/GeralFunctions';
@@ -58,18 +59,18 @@ export default function Header(){
             CONTACT 
           </LinkStyleHeader>
           <LinkStyleHeader to='/cart' hideMobile>
-             <Icon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length}> </AdvisorIcon></Icon> 
+             <PrimaryIcon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length}> </AdvisorIcon></PrimaryIcon> 
           </LinkStyleHeader>
           <LinkStyleHeader to='/login' hideMobile> 
-            <Icon> <RiAccountCircleLine/> </Icon>
+            <PrimaryIcon> <RiAccountCircleLine/> </PrimaryIcon>
            </LinkStyleHeader>
         </div>
 
         <HiddenMenu active={activeHiddenMenu}>
-          <LinkStyleHeader to='/aboutUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <BiMedal/> </Icon> About </LinkStyleHeader>
-          <LinkStyleHeader to='/contactUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <MdOutlineForwardToInbox/> </Icon> Contact </LinkStyleHeader>            
-          <LinkStyleHeader to='/cart' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length}> </AdvisorIcon> </Icon> Cart </LinkStyleHeader>            
-          <LinkStyleHeader to='/login' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <Icon> <RiAccountCircleLine/> </Icon> Login </LinkStyleHeader>            
+          <LinkStyleHeader to='/aboutUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <PrimaryIcon> <BiMedal/> </PrimaryIcon> About </LinkStyleHeader>
+          <LinkStyleHeader to='/contactUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <PrimaryIcon> <MdOutlineForwardToInbox/> </PrimaryIcon> Contact </LinkStyleHeader>            
+          <LinkStyleHeader to='/cart' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <PrimaryIcon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length}> </AdvisorIcon> </PrimaryIcon> Cart </LinkStyleHeader>            
+          <LinkStyleHeader to='/login' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <PrimaryIcon> <RiAccountCircleLine/> </PrimaryIcon> Login </LinkStyleHeader>            
         </HiddenMenu> 
       </Navigator>
     </>
