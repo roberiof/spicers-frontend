@@ -15,6 +15,8 @@ import Cart from './pages/Cart'
 import Home from './pages/Home'
 import ContactUs from './pages/ContactUs'
 import CreateAccount from './pages/CreateAccount'
+import UserInfo from './components/login/userPage/UserInfo'
+import UserLastOrders from './components/login/userPage/UserLastOrders'
 
 // RENDER
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -32,7 +34,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/contactUs' element={<ContactUs/>}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
-            <Route path='/create-account' element={<CreateAccount/>}></Route>
+            <Route path='/login/create-account' element={<CreateAccount/>}></Route>
+            <Route path='/login/:email' element={<UserInfo/>}></Route>
+            <Route path='/login/orders/:email' element={<UserLastOrders/>}></Route>
           </Route>
           
         </Routes>

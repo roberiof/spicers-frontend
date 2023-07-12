@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useEffect } from 'react'
 import { MdInfo } from 'react-icons/md'
 import styled from 'styled-components'
 
@@ -10,9 +11,10 @@ const StyledLabelIconDiv = styled.div`
 const InfoIcon = styled.span`
   color: gray;
   cursor: pointer;
-  display: flex;
   align-items: center;
   gap: .2rem;
+  
+  display: ${({hidden}) => hidden ? 'none' : 'flex'};
 
   *{
     pointer-events: none ;
@@ -51,7 +53,7 @@ const HelpInfoDiv = styled.div`
 
 `
 
-export default function LabelHelpIcon({helpText, labelName}){
+export default function LabelHelpIcon({helpText, labelName, hidden}){
   const labelNameCapitalized = labelName[0].toUpperCase() + labelName.slice(1)
   const [isHelpInfoDivsActive, setIsHelpDivsActive] = useState({
     name: false, 
@@ -79,7 +81,7 @@ export default function LabelHelpIcon({helpText, labelName}){
   return(
     <StyledLabelIconDiv>
       <label htmlFor={labelName}> {labelNameCapitalized}</label>
-      <InfoIcon onMouseEnter={() => handleShowHelpInfo(labelName)}> < MdInfo /> </InfoIcon>
+      <InfoIcon onMouseEnter={() => handleShowHelpInfo(labelName)} hidden={hidden}> < MdInfo /> </InfoIcon>
       {isHelpInfoDivsActive[labelName] && 
         <HelpInfoDiv>
             <div className="time-bar"></div>
