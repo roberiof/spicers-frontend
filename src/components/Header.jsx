@@ -1,7 +1,7 @@
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { TiShoppingCart } from 'react-icons/ti'
 import { BiMedal } from 'react-icons/bi' 
-import { MdMargin, MdOutlineForwardToInbox } from 'react-icons/md' 
+import { MdOutlineForwardToInbox } from 'react-icons/md' 
 import { Navigator , LinkStyleHeader, Icon, AdvisorIcon, HiddenMenu , StyledBurgerIcon} from "../styles/components/HeaderStyle";
 
 import logo from '../assets/logo.png'

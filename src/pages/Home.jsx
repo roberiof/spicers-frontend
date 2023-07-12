@@ -7,7 +7,6 @@ import { useContext } from 'react'
 import { ProductsContext } from '../context/ProductsContext'
 
 export default function Home(){
-  // const [prods, setProds] = useState([])
   const { prods , setProds } = useContext(ProductsContext)
 
   useEffect( () => {

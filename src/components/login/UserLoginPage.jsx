@@ -6,7 +6,6 @@ import randomUserImage  from '../../assets/random-user.png'
 
 import styled from "styled-components";
 import { WrapperContent } from "../../styles/components/UtilsStyles";
-import { LinkStyle } from '../../styles/components/UtilsStyles';
 import { PrimaryBtn } from '../../styles/components/UtilsStyles';
 import { UserContext } from '../../context/UserContext';
 
