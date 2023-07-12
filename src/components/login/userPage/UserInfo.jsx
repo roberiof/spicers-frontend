@@ -7,7 +7,7 @@ import { UserContext } from '../../../context/UserContext'
 
 import LabelHelpIcon from '../../createAccount/LabelHelpIcon'
 
-import { MdKeyboardBackspace } from 'react-icons/md'
+import { IoMdArrowRoundBack } from 'react-icons/io'
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
 import { BackPageIcon, PrimaryInputRounded, WrapperContent } from '../../../styles/components/UtilsStyles'
 import { PrimaryBtn } from '../../../styles/components/UtilsStyles'
@@ -185,7 +185,7 @@ const UserInfo = () => {
     return (
         <WrapperContent style={{maxWidth: '680px'}}>
             <BackPageIcon page={"login"}  onClick={() => navigate('/login')}>
-                <MdKeyboardBackspace/>
+                <IoMdArrowRoundBack/>
             </BackPageIcon> 
             <h2 style={{textAlign: 'center', marginBottom: '2rem'}}> Overview </h2>
 

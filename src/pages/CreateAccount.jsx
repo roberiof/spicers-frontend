@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import LabelHelpIcon from '../components/createAccount/LabelHelpIcon'
 import { WrapperContent } from '../styles/components/UtilsStyles'
 import { BackPageIcon, PrimaryInput } from '../styles/components/UtilsStyles'
-import { MdKeyboardBackspace } from 'react-icons/md'
+import { IoMdArrowRoundBack } from 'react-icons/io'
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
 import { postUserApi , getUserByEmailApi, errorMessageAnimation } from '../utils/GeralFunctions'
 
@@ -115,7 +115,7 @@ export default function CreateAccount(){
     <WrapperContent style={{maxWidth: '580px'}}>
 
       <BackPageIcon page={"account"} onClick={() => navigate('/login')}>
-        <MdKeyboardBackspace/>
+        <IoMdArrowRoundBack/>
       </BackPageIcon>
 
       <h2 style={{marginTop: "2rem"}}> Fill all information below to able the button: </h2>

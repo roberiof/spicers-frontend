@@ -4,7 +4,7 @@ import {formatToCurrency, getProductsApi, getLocalStorage, ProductsCartLSKey} fr
 
 import RowProduct from '../components/cart/RowProduct'
 import Summary from '../components/cart/Summary'
-import { MdKeyboardBackspace } from 'react-icons/md'
+import { IoMdArrowRoundBack } from 'react-icons/io'
 
 import { BackPageIcon } from '../styles/components/UtilsStyles'
 import { TableStyle, WrapperContentCart} from '../styles/components/CartStyle';
@@ -21,7 +21,7 @@ export default function Cart(){
   return (
     <WrapperContentCart>
       <BackPageIcon page={"home"}  onClick={() => navigate('/')}>
-        <MdKeyboardBackspace/>
+        <IoMdArrowRoundBack/>
       </BackPageIcon>
 
       <h1> Your Cart </h1>
