@@ -49,7 +49,7 @@ const WrapperLogin = styled(WrapperContent)`
     }
   }
 
-  button{
+  button[type="submit"]{
     padding: .8rem 1rem;
     display:block;
     margin: 2rem auto 0;
@@ -122,7 +122,7 @@ export default function GenericLoginPage({setIdUserLogged}){
           <div>
             <label htmlFor="password"> Password <span style={{color: 'red'}}>*</span></label>
             <PrimaryInput type={isShowPasswordActive ? "text" : "password" } id="password" ref={passwordInput} placeholder="Password" required value={formValues.password} onChange={(e) => handleInputChange(e, 'password')}/>
-            <ViewIcon onClick={() => handlePasswordActive()}>  {isShowPasswordActive ? <AiFillEyeInvisible/> : <AiFillEye/> } </ViewIcon>
+            <ViewIcon type="button" style={{top: '44%'}} onClick={() => handlePasswordActive()}>  {isShowPasswordActive ? <AiFillEyeInvisible/> : <AiFillEye/> } </ViewIcon>
           </div>
           <SubmitBtn type="submit" ref={submitBtn} onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)
           }> LOG IN </SubmitBtn>
@@ -133,7 +133,7 @@ export default function GenericLoginPage({setIdUserLogged}){
       <WrapperLogin h1PrimaryColor={true} isParagraphLight={true}>
         <h1> New Customers </h1>
         <p> Creating an account has many benefits: check out faster, keep more than one address, track orders and more. </p>
-        <PrimaryBtn onClick={(() => navigate('/create-account'))}> CREATE AN ACCOUNT </PrimaryBtn>
+        <PrimaryBtn style={{margin: 'auto', display: 'block'}} onClick={(() => navigate('create-account'))}> CREATE AN ACCOUNT </PrimaryBtn>
       </WrapperLogin>
     </>
   )

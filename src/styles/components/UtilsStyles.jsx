@@ -14,7 +14,7 @@ export const PrimaryBtn = styled.button`
     &:hover{
         opacity: .9;
         box-shadow: 1px 1px 5px 0px #000000;
-        transition: all 200ms;
+        transition: all 300ms;
     }
 `
 
@@ -47,6 +47,22 @@ export const PrimaryInput = styled.input`
     }
 `
 
+export const PrimaryInputRounded = styled(PrimaryInput)`  
+  border-radius: 40px;
+  padding-left: 1rem; 
+  padding-block: 0.6rem;
+  outline: 0;
+  border: 1px solid transparent;
+  ${({theme , editActive}) => {
+      if(editActive === 'false'){
+          return css`
+              background-color: transparent;
+              border-color: ${theme.colors.inputFocus};
+              color: ${theme.colors.lightText};
+          `
+  }}}
+`
+
 export const LinkStyle = styled(Link)`
   color: ${({theme}) => theme.colors.primary};
   text-decoration: none;
@@ -57,11 +73,13 @@ export const LinkStyle = styled(Link)`
   }
 `
 
-export const ViewIcon = styled.span`
+export const ViewIcon = styled.button`
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
   position: absolute;
-  padding-top: .5rem;
-  right: 3%;
+  margin-top: .9rem;
+  right: 5%;
   z-index: 1;
   color: ${({theme}) => theme.colors.lightText}; 
   *{
