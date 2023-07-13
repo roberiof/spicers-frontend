@@ -8,7 +8,7 @@ import { getLocalStorage , UserIdLSKey } from "../utils/GeralFunctions";
 export default function Login(){
   const responseLS = getLocalStorage(UserIdLSKey)
 
-  const [idUserLogged, setIdUserLogged] = useState(responseLS[0]) 
+  const [idUserLogged, setIdUserLogged] = useState(responseLS) 
 
   useEffect( () => {
     window.scrollTo(0,0)

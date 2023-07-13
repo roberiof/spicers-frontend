@@ -183,3 +183,14 @@ export const WrapperContent = styled.div`
     }
   }
 `
+
+export const UserProfileImage = styled.img`
+  width: 6rem;
+  height: 6rem;
+  border-radius: 100%;
+  margin: auto;
+  display: block; 
+  cursor: pointer;
+  border: ${({disabled_border}) => disabled_border ? 'none' : "2px solid red"}
+   
+`

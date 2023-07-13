@@ -65,13 +65,14 @@ export const updateUserApi = async(user) => {
 // LOCAL STORAGE 
 export const ProductsCartLSKey = 'productsCartSpicers'
 export const UserIdLSKey = 'loggedUserId'
+export const UserImageLSKey = 'imageUser'
 
 export const setLocalStorage = (item, localStorageKey) =>{
   localStorage.setItem(localStorageKey, JSON.stringify(item))
 }
 
 export const getLocalStorage = (localStorageKey) =>{
-  return JSON.parse(localStorage.getItem(localStorageKey)) ?? []
+  return JSON.parse(localStorage.getItem(localStorageKey)) ?? null
 }
 
 export const clearLocalStorage = (localStorageKey) =>{

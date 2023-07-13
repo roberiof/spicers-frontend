@@ -1,11 +1,11 @@
 import React, { useState, useRef, useContext, useEffect } from 'react'
 
 import { updateUserApi , getUserByEmailApi , errorMessageAnimation, getLocalStorage, UserIdLSKey, getUserByIdApi } from '../../../utils/GeralFunctions'
-
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../../context/UserContext'
 
 import LabelHelpIcon from '../../createAccount/LabelHelpIcon'
+
 
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
@@ -15,11 +15,14 @@ import { ViewIcon } from '../../../styles/components/UtilsStyles'
 
 
 import styled from 'styled-components'
+import InputUserProfileImage from './InputUserProfileImage'
 const UserForm = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
+    max-width: 400px;
+    margin: auto;
     div{
         position: relative;
     }  
@@ -182,14 +185,19 @@ const UserInfo = () => {
         getUserByIdApi(getLocalStorage(UserIdLSKey)).then(data => setUser(data))
     }, [])
 
+
     return (
         <WrapperContent style={{maxWidth: '680px'}}>
             <BackPageIcon page={"login"}  onClick={() => navigate('/login')}>
                 <IoMdArrowRoundBack/>
-            </BackPageIcon> 
-            <h2 style={{textAlign: 'center', marginBottom: '2rem'}}> Overview </h2>
+            </BackPageIcon>     
+            <h2 style={{textAlign: 'center', marginBlock: '1rem 2rem'}}> Overview </h2>
 
             <UserForm>
+                <InputUserProfileImage
+                    isEditActive={isEditActive}
+                />
+                
                 <div> 
                     <LabelHelpIcon 
                         labelName = { 'name'}

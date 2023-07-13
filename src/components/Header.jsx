@@ -1,15 +1,18 @@
+import React, { useEffect, useRef, useState , useContext } from 'react';
+
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { TiShoppingCart } from 'react-icons/ti'
 import { BiMedal } from 'react-icons/bi' 
 import { MdOutlineForwardToInbox } from 'react-icons/md' 
+
 import { Navigator , LinkStyleHeader, AdvisorIcon, HiddenMenu , StyledBurgerIcon} from "../styles/components/HeaderStyle";
-import { PrimaryIcon } from '../styles/components/UtilsStyles';
+import { PrimaryIcon , UserProfileImage } from '../styles/components/UtilsStyles';
 
 import logo from '../assets/logo.png'
 import { getLocalStorage, ProductsCartLSKey } from '../utils/GeralFunctions';
-import React, { useEffect, useRef, useState , useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import { ProductsContext } from '../context/ProductsContext';
+import { UserContext } from '../context/UserContext';
 
 export default function Header(){
   const nav = useRef()
@@ -17,6 +20,7 @@ export default function Header(){
   const [activeHiddenMenu , setActiveHiddenMenu] = useState(false)
   const navigate = useNavigate() 
   const { prods } = useContext(ProductsContext)
+  const { imageURL } = useContext(UserContext)
 
   const backHomeAndCloseMenu = () => {
     setActiveHiddenMenu(false)
@@ -61,8 +65,13 @@ export default function Header(){
           <LinkStyleHeader to='/cart' hideMobile>
              <PrimaryIcon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey).length}> </AdvisorIcon></PrimaryIcon> 
           </LinkStyleHeader>
-          <LinkStyleHeader to='/login' hideMobile> 
-            <PrimaryIcon> <RiAccountCircleLine/> </PrimaryIcon>
+          <LinkStyleHeader to='/login' hideMobile>
+            {console.log(imageURL)}
+            {
+              imageURL
+              ? <UserProfileImage style={{height: '2.1rem', width: '2.1rem'}} src={imageURL}/>
+              : <PrimaryIcon> <RiAccountCircleLine/> </PrimaryIcon> 
+            }
            </LinkStyleHeader>
         </div>
 

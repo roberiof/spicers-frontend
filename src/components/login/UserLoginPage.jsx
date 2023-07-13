@@ -1,21 +1,14 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { UserIdLSKey, clearLocalStorage, getUserByIdApi } from "../../utils/GeralFunctions";
+import React, { useEffect, useContext } from 'react'
+import { UserIdLSKey, clearLocalStorage, getUserByIdApi, UserImageLSKey } from "../../utils/GeralFunctions";
 import { useNavigate } from 'react-router-dom';
 
-import randomUserImage  from '../../assets/random-user.png'
+import randomUserImg from '../../assets/random-user.png'
 
 import styled from "styled-components";
+import { UserProfileImage } from '../../styles/components/UtilsStyles';
 import { WrapperContent } from "../../styles/components/UtilsStyles";
 import { PrimaryBtn } from '../../styles/components/UtilsStyles';
 import { UserContext } from '../../context/UserContext';
-
-const UserProfileImage = styled.img`
-  width: 6rem;
-  border-radius: 100%;
-  margin: auto;
-  display: block; 
-  cursor: pointer;
-`
 
 const UserButton = styled(PrimaryBtn)`
   display: block; 
@@ -38,7 +31,7 @@ const LeaveButton = styled(PrimaryBtn)`
 `
 
 export default function UserLoginPage({idUserLogged}){
-  const { user , setUser } = useContext(UserContext)
+  const { user , setUser , imageURL , setImageURL} = useContext(UserContext)
   const navigate = useNavigate()
   
   useEffect( () => {
@@ -49,15 +42,17 @@ export default function UserLoginPage({idUserLogged}){
    const confirmation = confirm('Are you sure you want to log out?')
    if (confirmation){
     clearLocalStorage(UserIdLSKey)
+    clearLocalStorage(UserImageLSKey)
+    setImageURL(null)
     navigate('/')
    }
   }
 
   return(
     <WrapperContent h1PrimaryColor={true} style={{maxWidth: "800px"}}>
-      <h1> Welcome </h1>
+      <h1 style={{marginTop: '1rem'}}> Welcome </h1>
 
-      <UserProfileImage src={randomUserImage} alt=""/>
+      <UserProfileImage src={imageURL ? imageURL : randomUserImg} disabled_border={imageURL === null} alt=""/>
       <p style={{textAlign: 'center'}}> {user.name} </p>
       <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop:'3%'}}>
           <UserButton onClick={() => navigate(user.email)}> Your Info </UserButton>
