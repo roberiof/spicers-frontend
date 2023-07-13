@@ -1,8 +1,11 @@
 import React from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { ShopBtn, SummaryStyle } from '../../styles/components/CartStyle'
-import {formatToCurrency, updateProductApi, clearLocalStorage, ProductsCartLSKey} from '../../utils/GeralFunctions'
+import { formatToCurrency, updateProductApi, clearLocalStorage, ProductsCartLSKey } from '../../utils/GeralFunctions'
 
 export default function Summary({ setProdsCart, prodsCart }){
+  const { user } = useContext(UserContext)
   let subtotal = 0
   let biggerFreight = 0
 
@@ -12,6 +15,11 @@ export default function Summary({ setProdsCart, prodsCart }){
   })
 
   const confirmShop = () =>{
+    if (!user){
+      alert('You need to be logged to confirm this shop! Please, go to the login page.')
+      return 
+    }
+
     if(prodsCart.length === 0){
       alert('The cart is empty!')
       return 
