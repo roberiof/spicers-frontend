@@ -34,6 +34,7 @@ Besides that, obviously the project is 100% adaptable for mobile devices and str
 * Managing components and hooks in React (avoiding unnecessary renders and code repetition)
 * Organizing styles with styled components
 * Organizing routes with React Routes
+* Using conventional commits pattern
 
 ## 🧱 Next Steps
 * Add Footer 
