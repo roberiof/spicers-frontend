@@ -43,6 +43,7 @@ export default function UserLoginPage({idUserLogged}){
    if (confirmation){
     clearLocalStorage(UserIdLSKey)
     clearLocalStorage(UserImageLSKey)
+    setUser({})
     setImageURL(null)
     navigate('/')
    }

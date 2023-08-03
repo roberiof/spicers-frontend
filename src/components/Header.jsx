@@ -9,6 +9,7 @@ import { Navigator , LinkStyleHeader, AdvisorIcon, HiddenMenu , StyledBurgerIcon
 import { PrimaryIcon , UserProfileImage } from '../styles/components/UtilsStyles';
 
 import logo from '../assets/logo.png'
+import randomUser from '../assets/random-user.png'
 import { getLocalStorage, ProductsCartLSKey } from '../utils/GeralFunctions';
 import { useNavigate } from "react-router-dom";
 import { ProductsContext } from '../context/ProductsContext';
@@ -20,6 +21,7 @@ export default function Header(){
   const [activeHiddenMenu , setActiveHiddenMenu] = useState(false)
   const navigate = useNavigate() 
   const { prods } = useContext(ProductsContext)
+  const { user } = useContext(UserContext)
   const { imageURL } = useContext(UserContext)
 
   const backHomeAndCloseMenu = () => {
@@ -38,6 +40,7 @@ export default function Header(){
       }
     }
     document.addEventListener('scroll', verifyTransparency)
+    
     return () => {
       document.removeEventListener('scroll', verifyTransparency)
     } 
@@ -67,8 +70,12 @@ export default function Header(){
           </LinkStyleHeader>
           <LinkStyleHeader to='/login' hideMobile>
             {
-              imageURL
-              ? <UserProfileImage style={{height: '2.1rem', width: '2.1rem'}} src={imageURL}/>
+              JSON.stringify(user) !== '{}' 
+              ? (
+                imageURL
+                ? <UserProfileImage style={{height: '2.1rem', width: '2.1rem'}} src={imageURL}/> 
+                : <UserProfileImage style={{height: '2.1rem', width: '2.1rem'}} src={randomUser}/> 
+              ) 
               : <PrimaryIcon> <RiAccountCircleLine/> </PrimaryIcon> 
             }
            </LinkStyleHeader>

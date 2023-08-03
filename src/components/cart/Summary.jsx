@@ -15,7 +15,7 @@ export default function Summary({ setProdsCart, prodsCart }){
   })
 
   const confirmShop = () =>{
-    if (!user){
+    if (JSON.stringify(user) === "{}"){
       alert('You need to be logged to confirm this shop! Please, go to the login page.')
       return 
     }
