@@ -21,10 +21,11 @@ export default function Card({product, setProds}){
     }
 
     const amountWanted = parseFloat(select.current.options[select.current.selectedIndex].value)
-    const productsCart = getLocalStorage(ProductsCartLSKey)
+    const productsCart = getLocalStorage(ProductsCartLSKey) || [  ]
     let prodInCart = productsCart.find(item => item._id === product._id)
 
     if ( product.amountWanted < product.amount ){
+      console.log('penis')
       product.amountWanted += amountWanted
       updateProductApi(product)
       if (prodInCart){
