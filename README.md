@@ -2,11 +2,11 @@
 
 <br>
 
-[Untitled_ Mar 20, 2023 1_46 PM.webm](https://user-images.githubusercontent.com/107323497/226411587-a1149d70-9c11-4ba8-82ac-9a389715219c.webm)
+[Spicers - The Best Spicy Products Store of USA.webm](https://github.com/roberiof/spicers-frontend/assets/107323497/2d65d3f4-05ea-4dd8-a86c-7ce63d8f189d)
 
 <br>
 
-> Use the project yourself: Clone de repo and use npm start to open a JSON-server and vite.
+> Use the project yourself: Clone de repo and use npm run dev (unfortunately you need to do npm run dev on "spicers-backend" repo too!!!)
 
 <br>
 
@@ -38,6 +38,7 @@ Besides that, obviously the project is 100% adaptable for mobile devices and str
 
 ## 🧱 Next Steps
 * Add Footer 
+* 
 * Add a filter in Home page for organizing products
 * Create administration features for the owner of the site (add more products, see shops ...)
 * Create 404 page 
