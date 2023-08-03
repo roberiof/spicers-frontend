@@ -9,8 +9,6 @@ export const UserProvider = ({children}) => {
     const [imageURL , setImageURL] = useState('')
 
     useEffect( () => {
-        console.log('atualizei a img')
-        console.log(getLocalStorage(UserImageLSKey))
         setImageURL(getLocalStorage(UserImageLSKey))
       } , [])
 

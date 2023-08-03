@@ -53,7 +53,7 @@ export default function Header(){
             <div></div>
             <div></div>
             <div></div>
-            <AdvisorIcon show={getLocalStorage(ProductsCartLSKey)} style={{marginTop: '-2rem'}}/>
+            <AdvisorIcon show={getLocalStorage(ProductsCartLSKey)?.length} style={{marginTop: '-2rem'}}/>
           </StyledBurgerIcon>
 
           <LinkStyleHeader to='/aboutUs' hideMobile> 
@@ -63,10 +63,9 @@ export default function Header(){
             CONTACT 
           </LinkStyleHeader>
           <LinkStyleHeader to='/cart' hideMobile>
-             <PrimaryIcon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey)}> </AdvisorIcon></PrimaryIcon> 
+             <PrimaryIcon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey)?.length}> </AdvisorIcon></PrimaryIcon> 
           </LinkStyleHeader>
           <LinkStyleHeader to='/login' hideMobile>
-            {console.log(imageURL)}
             {
               imageURL
               ? <UserProfileImage style={{height: '2.1rem', width: '2.1rem'}} src={imageURL}/>
@@ -78,7 +77,7 @@ export default function Header(){
         <HiddenMenu active={activeHiddenMenu}>
           <LinkStyleHeader to='/aboutUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <PrimaryIcon> <BiMedal/> </PrimaryIcon> About </LinkStyleHeader>
           <LinkStyleHeader to='/contactUs' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <PrimaryIcon> <MdOutlineForwardToInbox/> </PrimaryIcon> Contact </LinkStyleHeader>            
-          <LinkStyleHeader to='/cart' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <PrimaryIcon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey)}> </AdvisorIcon> </PrimaryIcon> Cart </LinkStyleHeader>            
+          <LinkStyleHeader to='/cart' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <PrimaryIcon> <TiShoppingCart/> <AdvisorIcon className='advisor' show={getLocalStorage(ProductsCartLSKey)?.length}> </AdvisorIcon> </PrimaryIcon> Cart </LinkStyleHeader>            
           <LinkStyleHeader to='/login' onClick={() => setActiveHiddenMenu(!activeHiddenMenu)} itemBurgerMenu> <PrimaryIcon> <RiAccountCircleLine/> </PrimaryIcon> Login </LinkStyleHeader>            
         </HiddenMenu> 
       </Navigator>
