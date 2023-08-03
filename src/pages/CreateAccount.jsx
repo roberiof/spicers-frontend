@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-
 import LabelHelpIcon from '../components/createAccount/LabelHelpIcon'
 import { WrapperContent } from '../styles/components/UtilsStyles'
 import { BackPageIcon, PrimaryInput } from '../styles/components/UtilsStyles'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
 import { postUserApi , getUserByEmailApi, errorMessageAnimation } from '../utils/GeralFunctions'
-
 import styled from 'styled-components'
 import { ViewIcon , SubmitBtn} from '../styles/components/UtilsStyles';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export const FormStyled = styled.form`
   width: 95%;
@@ -111,6 +111,10 @@ export default function CreateAccount(){
     setIsSubmitBtnDisabled(! areAllInputsFilled)
   })
 
+  useEffect(() =>{
+    AOS.init()
+  })
+
   return(
     <WrapperContent style={{maxWidth: '580px'}}>
 
@@ -121,7 +125,7 @@ export default function CreateAccount(){
       <h2 style={{marginTop: "2rem"}}> Fill all information below to able the button: </h2>
 
       <FormStyled>
-        <div className='wrapper-label-icon-input'>
+        <div className='wrapper-label-icon-input' data-aos="fade-left">
           <LabelHelpIcon 
               labelName = { 'name'}
               helpText = { 'Only letters, at least 3 of them.' }
@@ -131,7 +135,7 @@ export default function CreateAccount(){
           />
         </div>
 
-        <div className='wrapper-label-icon-input'>
+        <div className='wrapper-label-icon-input' data-aos="fade-left">
           <LabelHelpIcon 
             labelName = { 'email'}
             helpText = { 'Use @.' }
@@ -139,7 +143,7 @@ export default function CreateAccount(){
           <PrimaryInput type='email' id="email" placeholder="Email" required value={formValues.email} onChange={(e) => handleInputChange(e, 'email')}/>
         </div>
 
-        <div className='wrapper-label-icon-input'>
+        <div className='wrapper-label-icon-input' data-aos="fade-left">
           <LabelHelpIcon 
             labelName = { 'password'}
             helpText = { 'Use at least 8 characters.' }
@@ -152,13 +156,13 @@ export default function CreateAccount(){
           </div>
         </div>
 
-        <div className='wrapper-label-icon-input'>
+        <div className='wrapper-label-icon-input' data-aos="fade-left">
           <LabelHelpIcon 
             labelName = { 'password again'}
             helpText = { 'Write the same password again.' }
           />
 
-          <div className='input-icon'>
+          <div className='input-icon' data-aos="fade-left">
             <PrimaryInput type={isShowPasswordActive.confirmationPassword ? 'text' : 'password' } ref={confirmationPasswordInput} id="password again" placeholder="Password again" required value={formValues.confirmationPassword}
             onChange={(e) => handleInputChange(e, 'confirmationPassword')}/>
             <ViewIcon onClick={() => handleShowPassword('confirmationPassword')}>  
@@ -167,7 +171,7 @@ export default function CreateAccount(){
           </div>
         </div>
 
-        <SubmitBtn ref={submitBtn} style={{marginTop: "2rem"}} type="submit" onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)}> Create User </SubmitBtn>
+        <SubmitBtn data-aos="fade-left" ref={submitBtn} style={{marginTop: "2rem"}} type="submit" onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)}> Create User </SubmitBtn>
       </FormStyled>
 
     </WrapperContent>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import {formatToCurrency, getProductsApi, getLocalStorage, ProductsCartLSKey} from '../utils/GeralFunctions'
-
 import RowProduct from '../components/cart/RowProduct'
 import Summary from '../components/cart/Summary'
 import { IoMdArrowRoundBack } from 'react-icons/io'
-
 import { BackPageIcon } from '../styles/components/UtilsStyles'
 import { TableStyle, WrapperContentCart} from '../styles/components/CartStyle';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function Cart(){
   const [prodsCart, setProdsCart] = useState([])
@@ -16,6 +16,7 @@ export default function Cart(){
   useEffect(() => {
     setProdsCart(getLocalStorage(ProductsCartLSKey) ?? [])
     window.scrollTo(0,0)
+    AOS.init()
   }, [])
   
   return (
@@ -46,7 +47,7 @@ export default function Cart(){
                   formatToCurrency={formatToCurrency}
                 />
               ))}
-              {prodsCart.length === 0 && <tr><td colSpan={4} className='empty-message'> The cart is empty!</td></tr>}
+              {prodsCart.length === 0 && <tr><td colSpan={4} className='empty-message' data-aos="fade-up"> The cart is empty!</td></tr>}
             </tbody>
           </TableStyle>
         </section>

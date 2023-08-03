@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {formatToCurrency, updateProductApi, setLocalStorage, getLocalStorage, ProductsCartLSKey} from '../../utils/GeralFunctions'
 import {AiOutlineDelete , AiOutlinePlus ,AiOutlineMinus} from 'react-icons/ai'
-
 import { HandleAmountBtn , DeleteBtn} from '../../styles/components/CartStyle';
 import { useContext } from 'react';
 import { ProductsContext } from '../../context/ProductsContext';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function RowProduct({product, setProdsCart}){
   const [amountWanted, setAmountWanted] = useState(product.amountWanted)
@@ -37,10 +38,11 @@ export default function RowProduct({product, setProdsCart}){
   
   useEffect( () => {
     updateAmountWanted()
+    AOS.init()
   }, [amountWanted])
 
   return(
-    <tr>
+    <tr data-aos="fade-down">
         <td className="product-td">
           <img src={product.image} alt="Product" />
           <div className='name-category-div'>
@@ -53,9 +55,9 @@ export default function RowProduct({product, setProdsCart}){
         </td>
         <td className='amount-td'>
           <div className="amount-div">
-            <HandleAmountBtn className="lower" onClick={(e) => handleAmount(e.target.className)}> <span className="icon"><AiOutlineMinus/></span> </HandleAmountBtn>
+            <HandleAmountBtn id="lower" className="lower" onClick={(e) => handleAmount(e.target.className)}> <span className="icon"><AiOutlineMinus/></span> </HandleAmountBtn>
             <div> {amountWanted}  </div>
-            <HandleAmountBtn className="upper" onClick={(e) => handleAmount(e.target.className)}><span className="icon"> <AiOutlinePlus/></span> </HandleAmountBtn>
+            <HandleAmountBtn id="lower" className="upper" onClick={(e) => handleAmount(e.target.className)}><span className="icon"> <AiOutlinePlus/></span> </HandleAmountBtn>
           </div>
         </td>
         <td className='total-td'>

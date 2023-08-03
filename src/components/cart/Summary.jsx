@@ -56,7 +56,7 @@ export default function Summary({ setProdsCart, prodsCart }){
           <p> Total </p>
           <p> {formatToCurrency(subtotal + biggerFreight)} </p>
         </div>
-        <ShopBtn onClick={() => confirmShop()}> SHOP </ShopBtn>
+        <ShopBtn id="shopBtn" onClick={() => confirmShop()}> SHOP </ShopBtn>
     </SummaryStyle>
   )
 }

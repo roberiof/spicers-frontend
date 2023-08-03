@@ -1,12 +1,13 @@
 import React, {useEffect} from "react"
-
 import FormContactUs from "../components/contactUs/FormContactUs";
-
 import { WrapperContent } from "../styles/components/UtilsStyles";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function ContactUs(){  
   useEffect( () => {
     window.scrollTo(0,0)
+    AOS.init()
   }, [])
 
   return(
@@ -16,19 +17,19 @@ export default function ContactUs(){
 
       <div style={{marginTop: "1.5rem"}}>
         <p> Need help with an existing order you've placed?
-        Contact us at <a href='#' className="strong-email">info@spicers.com</a></p>
+        Contact us at <a href='#' className="strong-email" data-aos="zoom-out">info@spicers.com</a></p>
       </div>
 
       <div style={{marginTop: "1.5rem"}}>
-        <p> Questions on shipping costs or best shipping to choose for both domestic orders Contact us at <a href='#' className="strong-email">info@spicers.com</a> for details.</p>
+        <p> Questions on shipping costs or best shipping to choose for both domestic orders Contact us at <a href='#' className="strong-email" data-aos="zoom-out"> info@spicers.com</a> for details.</p>
       </div>
 
       <div style={{marginTop: "1.5rem"}}>
-        <p> For general product questions, product suggestions, ordering questions, marketing, or other information, please write us at <a href='#' className="strong-email"> questions@spicers.com </a> </p>
+        <p> For general product questions, product suggestions, ordering questions, marketing, or other information, please write us at <a href='#' className="strong-email" data-aos="zoom-out"> questions@spicers.com </a> </p>
       </div>
 
       <div style={{marginTop: "1.5rem"}}>
-        <p>Are you a vendor interested in submitting a product for our store to carry? Email <a href='#' className="strong-email"> questions@spicers.com</a> for details.</p>
+        <p>Are you a vendor interested in submitting a product for our store to carry? Email <a href='#' className="strong-email" data-aos="zoom-out"> questions@spicers.com</a> for details.</p>
       </div>
       
       <div style={{marginTop: "1.5rem"}}>

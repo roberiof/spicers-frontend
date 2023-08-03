@@ -3,19 +3,17 @@ import React, { useState, useRef, useContext, useEffect } from 'react'
 import { updateUserApi , getUserByEmailApi , errorMessageAnimation, getLocalStorage, UserIdLSKey, getUserByIdApi } from '../../../utils/GeralFunctions'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../../context/UserContext'
-
 import LabelHelpIcon from '../../createAccount/LabelHelpIcon'
-
-
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
 import { BackPageIcon, PrimaryInputRounded, WrapperContent } from '../../../styles/components/UtilsStyles'
 import { PrimaryBtn } from '../../../styles/components/UtilsStyles'
 import { ViewIcon } from '../../../styles/components/UtilsStyles'
-
-
 import styled from 'styled-components'
 import InputUserProfileImage from './InputUserProfileImage'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const UserForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -183,6 +181,7 @@ const UserInfo = () => {
 
     useEffect(() => {
         getUserByIdApi(getLocalStorage(UserIdLSKey)).then(data => setUser(data))
+        AOS.init()
     }, [])
 
 
@@ -198,7 +197,7 @@ const UserInfo = () => {
                     isEditActive={isEditActive}
                 />
                 
-                <div> 
+                <div data-aos="fade-right"> 
                     <LabelHelpIcon 
                         labelName = { 'name'}
                         helpText = { 'Only letters, at least 3 of them.' }
@@ -207,7 +206,7 @@ const UserInfo = () => {
                     <PrimaryInputRounded type="text"  value={formValues.name} onChange={(e) => handleInputChange(e , 'name')} disabled={!isEditActive} editActive={JSON.stringify(isEditActive)}/>
                 </div>
 
-                <div> 
+                <div data-aos="fade-right"> 
                     <LabelHelpIcon 
                         labelName = { 'email'}
                         helpText = { 'Use @.' }
@@ -216,7 +215,7 @@ const UserInfo = () => {
                     <PrimaryInputRounded type="text" value={formValues.email} onChange={(e) => handleInputChange(e , 'email')} disabled={!isEditActive} editActive={JSON.stringify(isEditActive)}/>
                 </div>
 
-                <div> 
+                <div data-aos="fade-right"> 
                     <LabelHelpIcon 
                         labelName = { 'password'}
                         helpText = { 'Use at least 8 characters.' }
@@ -228,7 +227,7 @@ const UserInfo = () => {
                     </ViewIcon>
                 </div>
 
-                <div ref={confirmationPasswordDiv} style={{display: 'none'}}> 
+                <div  data-aos="fade-right"ref={confirmationPasswordDiv} style={{display: 'none'}}> 
                     <LabelHelpIcon 
                         labelName = { 'password again'}
                         helpText = { 'Write the same password again.' }
@@ -240,7 +239,7 @@ const UserInfo = () => {
                     </ViewIcon>
                 </div>
 
-                <PrimaryBtn style={{marginTop: '1rem', marginInline: 'auto', display: 'block', width: '10rem', marginTop: '3rem'}} onClick={(e) => handleSubmit(e)} ref={submitBtn}> 
+                <PrimaryBtn data-aos="fade-up" style={{marginTop: '1rem', marginInline: 'auto', display: 'block', width: '10rem', marginTop: '3rem'}} onClick={(e) => handleSubmit(e)} ref={submitBtn}> 
                     { isEditActive ? 'Confirm' : 'Edit'} 
                 </PrimaryBtn>
             </UserForm>

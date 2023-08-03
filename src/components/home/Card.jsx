@@ -1,7 +1,10 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { CardStyle , StockInfo, AddCartBtn, SoldOutBtn } from "../../styles/components/HomeStyle"
 import {formatToCurrency, updateProductApi, getLocalStorage, setLocalStorage, ProductsCartLSKey} from '../../utils/GeralFunctions'
 import { useNavigate } from "react-router-dom"
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function Card({product, setProds}){
   const navigate = useNavigate()
@@ -43,17 +46,21 @@ export default function Card({product, setProds}){
       <select name="quantity" id="prodCount" ref={select}>
           {quantOptionsSelect}      
       </select>
-      <AddCartBtn onClick={() => addToCart(product)}> ADD </AddCartBtn>
+      <AddCartBtn id="addBtn" onClick={() => addToCart(product)}> ADD </AddCartBtn>
     </>
   )
 
   const OutStockButton =(
-    <SoldOutBtn format='soldOut' onClick={() => navigate('/login')} > Notify me when available </SoldOutBtn>
+    <SoldOutBtn id="outStockBtn" format='soldOut' onClick={() => navigate('/login')} > Notify me when available </SoldOutBtn>
   )
 
+  useEffect(() =>{
+    AOS.init();    
+  }, [])
+  
   return(
     <> 
-      <CardStyle> 
+      <CardStyle data-aos="flip-left"> 
         <img src={product.image} alt="Product" />
         <div className="card-text">
           <p className="product-name"> {product.name} </p>

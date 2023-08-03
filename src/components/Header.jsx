@@ -1,13 +1,10 @@
 import React, { useEffect, useRef, useState , useContext } from 'react';
-
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { TiShoppingCart } from 'react-icons/ti'
 import { BiMedal } from 'react-icons/bi' 
 import { MdOutlineForwardToInbox } from 'react-icons/md' 
-
 import { Navigator , LinkStyleHeader, AdvisorIcon, HiddenMenu , StyledBurgerIcon} from "../styles/components/HeaderStyle";
 import { PrimaryIcon , UserProfileImage } from '../styles/components/UtilsStyles';
-
 import logo from '../assets/logo.png'
 import randomUser from '../assets/random-user.png'
 import { getLocalStorage, ProductsCartLSKey } from '../utils/GeralFunctions';

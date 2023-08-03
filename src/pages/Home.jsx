@@ -6,18 +6,22 @@ import { WrapperHome, WrapperCards } from '../styles/components/HomeStyle'
 import { useContext } from 'react'
 import { ProductsContext } from '../context/ProductsContext'
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 export default function Home(){
   const { prods , setProds } = useContext(ProductsContext)
 
   useEffect( () => {
     getProductsApi().then(data => setProds(data))
     window.scroll(0,0)
+    AOS.init();    
   }, [])
 
   return(
     <WrapperHome>
       <div className='presentation'>
-        <div className="text">
+        <div className="text" data-aos="fade-left">
           <h1> A new way to consume <span className='colored-h1'>Spicyries</span> for real <span className="colored-h1">Spicers</span></h1>
           <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>

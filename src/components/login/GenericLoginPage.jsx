@@ -1,14 +1,13 @@
 import React, { useState , useEffect , useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { UserIdLSKey, getUserByEmailApi, setLocalStorage , errorMessageAnimation } from '../../utils/GeralFunctions';
-
 import styled from "styled-components";
 import { WrapperContent } from "../../styles/components/UtilsStyles";
 import { PrimaryBtn, PrimaryInput, SubmitBtn } from '../../styles/components/UtilsStyles';
 import { ViewIcon } from '../../styles/components/UtilsStyles';
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const WrapperLogin = styled(WrapperContent)`
   max-width: 800px;
@@ -109,22 +108,25 @@ export default function GenericLoginPage({setIdUserLogged}){
     setIsSubmitBtnDisabled(!isAllInfoFilledUp);
   }, [formValues]);
 
+  useEffect(() =>{
+    AOS.init()
+  })
   return(
     <>
       <WrapperLogin h1PrimaryColor={true} isParagraphLight={true}>
         <h1> Registered Customers </h1>
         <p> If you have an account, sign in with your email address</p>
         <form>
-          <div>
+          <div data-aos="fade-up" >
             <label htmlFor="email"> Email <span style={{color: 'red'}}> * </span> </label>
             <PrimaryInput type="email" id="email" placeholder="Email" required value={formValues.email} onChange={(e) => handleInputChange(e, 'email')}/>
           </div>
-          <div>
+          <div data-aos="fade-up" >
             <label htmlFor="password"> Password <span style={{color: 'red'}}>*</span></label>
             <PrimaryInput type={isShowPasswordActive ? "text" : "password" } id="password" ref={passwordInput} placeholder="Password" required value={formValues.password} onChange={(e) => handleInputChange(e, 'password')}/>
             <ViewIcon type="button" style={{top: '44%'}} onClick={() => handlePasswordActive()}>  {isShowPasswordActive ? <AiFillEyeInvisible/> : <AiFillEye/> } </ViewIcon>
           </div>
-          <SubmitBtn type="submit" ref={submitBtn} onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)
+          <SubmitBtn  data-aos="fade-up" type="submit" ref={submitBtn} onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)
           }> LOG IN </SubmitBtn>
           <a href="#"> Forgot Your Password? </a>
         </form>

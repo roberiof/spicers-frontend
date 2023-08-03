@@ -16,7 +16,7 @@ export const Navigator = styled.nav`
   position: fixed;
   top: 0%;
   z-index: 1;
-  padding-block: 2rem;
+  padding-block: 2rem;  
   padding-inline: ${({ transparent }) => (transparent) ? '8%' : '6%'};
   .wrapper{
     position: relative;
@@ -53,7 +53,34 @@ export const LinkStyleHeader = styled(LinkStyle)`
     font-size: 1.5rem !important;
   }
   // makes icons a little smaller!
+  background-image: ${({ theme }) => `linear-gradient(to right, ${theme.colors.primary}, ${theme.colors.primary}, #fff)`};
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+  :before{
+      content: '';
+      background: ${({ theme }) => theme.colors.primary};
+      display: block;
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      transition: all 0.3s ease-in-out;
+    }
 
+  :hover {
+  background-position: 0;
+  }
+
+  :hover::before{
+    width: 100%;
+  }
   @media (max-width: ${({theme}) => theme.medias.sm}) {
     display: ${({hideMobile}) => hideMobile ? 'none' : 'flex'};
     gap: 10px;
@@ -119,6 +146,8 @@ export const HiddenMenu = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  display:flex;
+  gap: 1rem;
   background-color: ${({theme}) => theme.colors.secondaryDarker};
   transform: ${({ active }) => active ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 0.3s ease-in-out;
@@ -128,5 +157,5 @@ export const HiddenMenu = styled.div`
   left: 0; 
   padding-top: 1rem;
   padding-right: 5rem;
-  padding-left: 0;
+  padding-left: 10%;
 `
