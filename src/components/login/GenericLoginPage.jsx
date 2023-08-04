@@ -2,9 +2,9 @@ import React, { useState , useEffect , useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserIdLSKey, getUserByEmailApi, setLocalStorage , errorMessageAnimation } from '../../utils/GeralFunctions';
 import styled from "styled-components";
-import { WrapperContent } from "../../styles/components/UtilsStyles";
-import { PrimaryBtn, PrimaryInput, SubmitBtn } from '../../styles/components/UtilsStyles';
-import { ViewIcon } from '../../styles/components/UtilsStyles';
+import { WrapperContent } from "../../styles/UtilsStyles";
+import { PrimaryBtn, PrimaryInput, SubmitBtn } from '../../styles/UtilsStyles';
+import { ViewIcon } from '../../styles/UtilsStyles';
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
 import AOS from 'aos';
 import 'aos/dist/aos.css';

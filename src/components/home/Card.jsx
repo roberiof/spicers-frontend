@@ -1,10 +1,115 @@
 import React, { useEffect, useRef } from "react"
-import { CardStyle , StockInfo, AddCartBtn, SoldOutBtn } from "../../styles/components/HomeStyle"
 import {formatToCurrency, updateProductApi, getLocalStorage, setLocalStorage, ProductsCartLSKey} from '../../utils/GeralFunctions'
 import { useNavigate } from "react-router-dom"
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import styled from "styled-components";
+import bgHome from '../../assets/bgHome.jpg'
+import { PrimaryBtn } from "../../styles/UtilsStyles";
+
+export const CardStyle = styled.div`
+  width: 20rem;
+  height: 31rem;
+  box-shadow: 0px 0px 5px 0px black;
+  display: flex;
+  justify-content: space-between;
+  flex-direction:column;
+  img{
+    object-fit: contain;
+    width: 100%;
+    height: 20rem;
+  }
+  .card-text{
+    padding: 1rem;
+    .product-name{
+      font-weight: bolder;
+    }
+    .product-category{
+      color: ${({theme}) => theme.colors.lightText}
+    }
+    .card-price-text{
+      .price{
+        font-size: 1.2rem;
+      }
+      margin-block: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+    }
+  }
+  .add-div{
+    display: flex;
+    select{
+      border-width: 0px 1px 0px 0px;
+      text-align: center;
+      width: 30%;
+      color: #ffffff;
+      background-color: ${({theme}) => theme.colors.primary};
+      border-radius: 10px 0px 0px 10px;
+      cursor: pointer;
+      option{
+        text-align: center
+      }
+      &::-webkit-scrollbar{
+        width: 8px;
+      }
+      &::-webkit-scrollbar-thumb{
+        background-color: ${({theme}) => theme.colors.secondaryDark};
+        border-radius: 20px;
+      }
+    }
+  }
+
+  @media (max-width: ${({theme}) => theme.medias.m}){
+    width: 10rem;
+    height: 21rem;
+    font-size: .8rem;
+    img{
+      width: 100%;
+      height: 10rem;
+    }
+    .add-div *{
+      font-size: 0.7rem;
+    }
+ 
+    .price{
+      font-size: 1rem !important;
+    }
+    }
+    
+  }
+`
+
+export const StockInfo = styled.div`
+  background-color:${({inStock,theme}) => inStock ? theme.colors.success : theme.colors.fail};
+  width: fit-content;
+  padding: .15rem .75rem ;
+  border-radius: 50px;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: .9rem;
+  @media (max-width: ${({theme}) => theme.medias.m}){
+    font-size: .65rem;
+    padding-inline: .5rem;
+  }
+` 
+  
+export const AddCartBtn = styled(PrimaryBtn)`   
+  background-color: ${({theme}) => theme.colors.primary};
+  color: #ffffff;
+  width: 70%;
+  padding: 0.5rem 1rem;
+  border-radius: 0px 10px 10px 0px;
+`
+
+export const SoldOutBtn = styled(PrimaryBtn)`   
+  background-color: ${({theme}) => theme.colors.soldOutBtn};
+  color: #000000;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+`
 
 export default function Card({product, setProds}){
   const navigate = useNavigate()

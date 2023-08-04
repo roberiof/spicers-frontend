@@ -1,6 +1,6 @@
 import React, {useEffect} from "react"
 import FormContactUs from "../components/contactUs/FormContactUs";
-import { WrapperContent } from "../styles/components/UtilsStyles";
+import { WrapperContent } from "../styles/UtilsStyles";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

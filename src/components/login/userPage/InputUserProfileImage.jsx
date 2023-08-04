@@ -4,7 +4,7 @@ import { UserContext } from '../../../context/UserContext'
 
 import randomUserImg from '../../../assets/random-user.png'
 
-import { PrimaryIcon , UserProfileImage } from '../../../styles/components/UtilsStyles'
+import { PrimaryIcon , UserProfileImage } from '../../../styles/UtilsStyles'
 import { MdEditDocument } from 'react-icons/md'
 
 import styled from 'styled-components'

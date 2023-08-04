@@ -1,5 +1,5 @@
 import React , {useState , useEffect , useRef} from 'react'
-import { PrimaryInput, SubmitBtn } from '../../styles/components/UtilsStyles'
+import { PrimaryInput, SubmitBtn } from '../../styles/UtilsStyles'
 import styled from 'styled-components'
 import { getUserByEmailApi, updateUserApi , errorMessageAnimation} from '../../utils/GeralFunctions'
 import AOS from 'aos';

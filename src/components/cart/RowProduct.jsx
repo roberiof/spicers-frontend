@@ -1,11 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import {formatToCurrency, updateProductApi, setLocalStorage, getLocalStorage, ProductsCartLSKey} from '../../utils/GeralFunctions'
 import {AiOutlineDelete , AiOutlinePlus ,AiOutlineMinus} from 'react-icons/ai'
-import { HandleAmountBtn , DeleteBtn} from '../../styles/components/CartStyle';
 import { useContext } from 'react';
 import { ProductsContext } from '../../context/ProductsContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import styled from "styled-components";
+import { PrimaryBtn } from "../../styles/UtilsStyles";
+
+
+export const HandleAmountBtn = styled(PrimaryBtn)`
+    background-color: ${({theme}) => theme.colors.cartActionBtn};
+    color: black;
+    padding: .2rem 0.5rem 0;
+`
+
+export const DeleteBtn = styled(PrimaryBtn)`
+  background-color: ${({theme}) => theme.colors.cartActionBtn};
+  color: black;
+  position: absolute;
+  margin-top: 2rem;
+  padding: .1rem;
+  border: 0;
+  top: 0;
+  transform: translateX(-100%);
+  @media (max-width: ${({theme}) => theme.medias.m}) {
+    padding: 0;
+    margin-top: .8em;
+  }
+`
 
 export default function RowProduct({product, setProdsCart}){
   const [amountWanted, setAmountWanted] = useState(product.amountWanted)

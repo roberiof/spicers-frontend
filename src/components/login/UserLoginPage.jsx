@@ -3,9 +3,7 @@ import { UserIdLSKey, clearLocalStorage, getUserByIdApi, UserImageLSKey } from "
 import { useNavigate } from 'react-router-dom';
 import randomUserImg from '../../assets/random-user.png'
 import styled from "styled-components";
-import { UserProfileImage } from '../../styles/components/UtilsStyles';
-import { WrapperContent } from "../../styles/components/UtilsStyles";
-import { PrimaryBtn } from '../../styles/components/UtilsStyles';
+import { UserProfileImage, WrapperContent, PrimaryBtn } from '../../styles/UtilsStyles';
 import { UserContext } from '../../context/UserContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';

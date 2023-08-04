@@ -1,8 +1,7 @@
 import React, { useContext , useEffect } from 'react'
 import { UserContext } from '../../../context/UserContext'
 import { IoMdArrowRoundBack } from 'react-icons/io'
-import { WrapperContent , BackPageIcon} from '../../../styles/components/UtilsStyles'
-import { LinkStyle } from '../../../styles/components/UtilsStyles'
+import { WrapperContent , BackPageIcon, LinkStyle} from '../../../styles/UtilsStyles'
 import { getLocalStorage, getUserByIdApi, UserIdLSKey } from '../../../utils/GeralFunctions'
 import { useNavigate } from 'react-router-dom'
 import AOS from 'aos';

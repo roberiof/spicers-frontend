@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import LabelHelpIcon from '../components/createAccount/LabelHelpIcon'
-import { WrapperContent } from '../styles/components/UtilsStyles'
-import { BackPageIcon, PrimaryInput } from '../styles/components/UtilsStyles'
+import { BackPageIcon, PrimaryInput, WrapperContent, ViewIcon , SubmitBtn } from '../styles/UtilsStyles'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { AiFillEye , AiFillEyeInvisible } from 'react-icons/ai'
 import { postUserApi , getUserByEmailApi, errorMessageAnimation } from '../utils/GeralFunctions'
 import styled from 'styled-components'
-import { ViewIcon , SubmitBtn} from '../styles/components/UtilsStyles';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
