@@ -38,6 +38,7 @@ Besides that, obviously the project is 100% adaptable for mobile devices and str
 
 ## 🧱 Next Steps
 * Add Footer 
+* 
 * Add a filter in Home page for organizing products
 * Create administration features for the owner of the site (add more products, see shops ...)
 * Create 404 page 
