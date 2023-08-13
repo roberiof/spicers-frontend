@@ -75,9 +75,17 @@ export default function UserLoginPage({idUserLogged}){
   const { user , setUser , imageURL , setImageURL} = useContext(UserContext)
   const navigate = useNavigate()
   
+  const getLoggedUser = async() =>{
+    const response = await getUserByIdApi(idUserLogged)
+    if (response === 'error'){
+      return 
+     }
+     setUser(response )
+  }
+
   useEffect( () => {
-   getUserByIdApi(idUserLogged).then(data => setUser(data)) 
-   AOS.init()
+    getLoggedUser() 
+    AOS.init()
   }, [])  
 
   const handleUserLogOut = () => {

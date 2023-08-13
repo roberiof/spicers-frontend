@@ -12,10 +12,18 @@ const UserLastOrders = () => {
   const navigate = useNavigate()
   const { user , setUser } = useContext(UserContext)
 
-  useEffect(() => {
-    getUserByIdApi(getLocalStorage(UserIdLSKey)).then(data => setUser(data))
+  const getLoggedUser = async() =>{
+    const response = await getUserByIdApi(idUserLogged)
+    if (response === 'error'){
+      return 
+     }
+     setUser(response )
+  }
+
+  useEffect( () => {
+    getLoggedUser() 
     AOS.init()
-  }, [])
+  }, [])  
 
   return (
     <WrapperContent style={{maxWidth: '800px'}}>

@@ -78,6 +78,12 @@ export default function FormContactUs(){
     e.preventDefault()
 
     const user = await getUserByEmailApi(formValues.email)
+
+    if (user == 'error'){
+      alert('Try again later, some error occurred with our database.')
+      return 
+    }
+
     if(! user){
       errorMessageAnimation(submitBtn , 'This email is not registered! Please, create an account!')
       return

@@ -97,7 +97,12 @@ const UserInfo = () => {
 
     const isUserExistent = async() => {
         const user = await getUserByEmailApi(formValues.email)
-        return user !== null
+        if (user == 'error'){
+            alert('Try again later, some error occurred with our database.')
+            return 
+        }else{
+            return user !== null
+        }
     }
 
     const resetValues = () => {
@@ -179,10 +184,18 @@ const UserInfo = () => {
         })
     }, [user])
 
-    useEffect(() => {
-        getUserByIdApi(getLocalStorage(UserIdLSKey)).then(data => setUser(data))
+    const getLoggedUser = async() =>{
+        const response = await getUserByIdApi(idUserLogged)
+        if (response === 'error'){
+          return 
+         }
+         setUser(response )
+      }
+    
+      useEffect( () => {
+        getLoggedUser() 
         AOS.init()
-    }, [])
+      }, [])  
 
 
     return (
@@ -239,7 +252,7 @@ const UserInfo = () => {
                     </ViewIcon>
                 </div>
 
-                <PrimaryBtn data-aos="fade-up" style={{marginTop: '1rem', marginInline: 'auto', display: 'block', width: '10rem', marginTop: '3rem'}} onClick={(e) => handleSubmit(e)} ref={submitBtn}> 
+                <PrimaryBtn data-aos="fade-up" style={{marginInline: 'auto', display: 'block', width: '10rem', marginTop: '3rem'}} onClick={(e) => handleSubmit(e)} ref={submitBtn}> 
                     { isEditActive ? 'Confirm' : 'Edit'} 
                 </PrimaryBtn>
             </UserForm>
