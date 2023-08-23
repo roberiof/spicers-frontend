@@ -32,7 +32,7 @@ const WrapperButtons = styled.div`
     width: 100%;
     position: relative;
     padding: 1.5rem;
-    box-shadow: ${( {theme} ) => `inset 0 0 0 4px ${theme.colors.primary}, inset -4px -4px 0 4px #CCC;`} 
+    box-shadow: ${( {theme} ) => `inset 0 0 0 4px ${theme.colors.primary}, inset -4px -4px 0 4px #CCC;`};
     background-color: #FFF;
     cursor: pointer; 
   &:before {
@@ -73,9 +73,17 @@ export default function UserLoginPage({idUserLogged}){
   const { user , setUser , imageURL , setImageURL} = useContext(UserContext)
   const navigate = useNavigate()
   
+  const getLoggedUser = async() =>{
+    const response = await getUserByIdApi(idUserLogged)
+    if (response === 'error'){
+      return 
+     }
+     setUser(response )
+  }
+
   useEffect( () => {
-   getUserByIdApi(idUserLogged).then(data => setUser(data)) 
-   AOS.init()
+    getLoggedUser() 
+    AOS.init()
   }, [])  
 
   const handleUserLogOut = () => {

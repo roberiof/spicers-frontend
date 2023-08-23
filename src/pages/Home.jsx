@@ -67,8 +67,19 @@ export const WrapperCards = styled.div`
 export default function Home(){
   const { prods , setProds } = useContext(ProductsContext)
 
+
+  const getAllProducts = async() =>{
+    const response = await getProductsApi()
+    console.log(response)
+    if (response == 'error'){
+      return
+    }
+    setProds(response)
+  }
+
+
   useEffect( () => {
-    getProductsApi().then(data => setProds(data))
+    getAllProducts()
     window.scroll(0,0)
     AOS.init();    
   }, [])
