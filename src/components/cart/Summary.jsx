@@ -1,7 +1,6 @@
-import React from 'react';
-import { useContext } from 'react';
+import React , { useContext , useEffect } from 'react';
 import { UserContext } from '../../context/UserContext';
-import { formatToCurrency, updateProductApi, clearLocalStorage, ProductsCartLSKey } from '../../utils/GeralFunctions'
+import { formatToCurrency, updateProductApi, clearLocalStorage, ProductsCartLSKey, updateUserApi, getUserByIdApi, getLocalStorage, UserIdLSKey } from '../../utils/GeralFunctions'
 import styled from "styled-components";
 import { PrimaryBtn } from "../../styles/UtilsStyles";
 
@@ -49,7 +48,7 @@ export const ShopBtn = styled(PrimaryBtn)`
 `
 
 export default function Summary({ setProdsCart, prodsCart }){
-  const { user } = useContext(UserContext)
+  const { user, setUser} = useContext(UserContext)
   let subtotal = 0
   let biggerFreight = 0
 
@@ -57,6 +56,23 @@ export default function Summary({ setProdsCart, prodsCart }){
     biggerFreight = biggerFreight < product.freight ? product.freight : biggerFreight
     subtotal += product.price * product.amountWanted
   })
+
+  const updateUserOrders = (orderNumber , product) =>{
+    const order = {
+      name: product.name, 
+      category: product.category,
+      price: product.price,
+      freight: product.freight,
+      amountWanted: product.amountWanted,
+    }
+    if(JSON.stringify(user.orders) === '{}'){
+      user.orders[orderNumber] = [order]
+    }else{
+      user.orders[orderNumber].push(order)
+    }
+    setUser(user)
+    updateUserApi(user)
+  }
 
   const confirmShop = () =>{
     if (JSON.stringify(user) === "{}"){
@@ -72,7 +88,9 @@ export default function Summary({ setProdsCart, prodsCart }){
     const confirmation = confirm('Do you really want to finish?')
     if(confirmation){
       setProdsCart([])
+      const orderNumber = parseInt(Math.random()*1000000)
       for(let product of prodsCart){
+        updateUserOrders(orderNumber, product)
         product.amount -= product.amountWanted
         product.amountWanted = 0 
         updateProductApi(product)
@@ -83,6 +101,10 @@ export default function Summary({ setProdsCart, prodsCart }){
       }, 400)
     }
   }
+
+  useEffect(() => {
+    getUserByIdApi(getLocalStorage(UserIdLSKey)).then(data => setUser(data))
+  }, [])
 
   return(
     <SummaryStyle>

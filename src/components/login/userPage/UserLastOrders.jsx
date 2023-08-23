@@ -6,6 +6,7 @@ import { getLocalStorage, getUserByIdApi, UserIdLSKey } from '../../../utils/Ger
 import { useNavigate } from 'react-router-dom'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import OrderModal from './OrderModal'
 
 const UserLastOrders = () => {
   const navigate = useNavigate()
@@ -25,9 +26,9 @@ const UserLastOrders = () => {
       {user.orders && user.orders.length == 0 ? 
         <p data-aos="fade-left" style={{textAlign: 'center'}}>There is no last orders! Make your first one, go to our <LinkStyle to="/"> Home Page </LinkStyle>  and see our products.</p>
         :
-        <></>
-    }
-  </WrapperContent>   
+        user.orders && Object.values(user.orders)[0].map( item => <OrderModal key={Object.keys(user.orders)[0]} orderNumber={Object.keys(user.orders)[0]} order={item}/>)
+      }
+    </WrapperContent>   
   )
 }
 
