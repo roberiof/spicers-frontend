@@ -44,7 +44,6 @@ _*PS:* The Render (deployment platoform) non paid deploy desacelerates the backe
 
 ## 🧱 Next Steps
 * Add Footer 
-* 
 * Add a filter in Home page for organizing products
 * Create administration features for the owner of the site (add more products, see shops ...)
 * Create 404 page 
