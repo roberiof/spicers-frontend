@@ -117,6 +117,7 @@ export default function Card({product, setProds}){
   const quantProdsApi = product.amount - product.amountWanted
   const exhibitedQuantProd = quantProdsApi < 10 ? quantProdsApi : 10; 
   const quantOptionsSelect = []
+  const loggedUserId = localStorage.getItem("loggedUserId");
   
   for(let i=1; i<=exhibitedQuantProd; i++){
     quantOptionsSelect.push(<option key={i} value={i}> {i}</option>)
@@ -146,7 +147,7 @@ export default function Card({product, setProds}){
     }
   }
 
-  const inStockButton = ( 
+  const inStockButton = (   
     <>
       <select name="quantity" id="prodCount" ref={select}>
           {quantOptionsSelect}      
@@ -156,7 +157,7 @@ export default function Card({product, setProds}){
   )
 
   const OutStockButton =(
-    <SoldOutBtn id="outStockBtn" format='soldOut' onClick={() => navigate('/login')} > Notify me when available </SoldOutBtn>
+    <SoldOutBtn id="outStockBtn" format='soldOut' onClick={() => loggedUserId ? alert("Noted! You will be notified when this product is available again") : navigate('/login')} > Notify me when available </SoldOutBtn>
   )
 
   useEffect(() =>{

@@ -1,7 +1,7 @@
 import React , {useState , useEffect , useRef} from 'react'
 import { PrimaryInput, SubmitBtn } from '../../styles/UtilsStyles'
 import styled from 'styled-components'
-import { getUserByEmailApi, updateUserApi , errorMessageAnimation} from '../../utils/GeralFunctions'
+import { getUserByEmailApi, updateUserApi , errorMessageAnimation, getUserByIdApi, postGenericMessage} from '../../utils/GeralFunctions'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -12,7 +12,7 @@ const StyledForm = styled.form`
 
   .name-email-phone-div{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
     gap: 1rem;
     div{
       display: flex;
@@ -24,7 +24,7 @@ const StyledForm = styled.form`
       
     @media (max-width: 700px){
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr ;
     }
   }
 
@@ -56,10 +56,11 @@ const StyledForm = styled.form`
   }
 `
 export default function FormContactUs(){
-  const defaultFormValues = {
+  const loggedUserId = JSON.parse(localStorage.getItem("loggedUserId")) ? JSON.parse(localStorage.getItem("loggedUserId"))[0] : undefined
+  const [ user , setUser ] = useState();
+  const defaultFormValues =  {
     name: '', 
     email: '', 
-    phone:  '', 
     message: ''
   }
   const [formValues, setFormValues] = useState(defaultFormValues)
@@ -74,37 +75,53 @@ export default function FormContactUs(){
     })
   }
 
-  const verifyUserValidity = async(e) => {
+  const storeGenericMessage = async(e) => {
     e.preventDefault()
-
-    const user = await getUserByEmailApi(formValues.email)
-
-    if (user == 'error'){
-      alert('Try again later, some error occurred with our database.')
-      return 
-    }
-
-    if(! user){
-      errorMessageAnimation(submitBtn , 'This email is not registered! Please, create an account!')
-      return
-    }
-    
-    storeMessage(user)
+    postGenericMessage(formValues)
+    setFormValues(defaultFormValues)
+    alert("Message sent!")
   }
-
-  const storeMessage = async(user) =>{
+  
+  const storeMessageUser = async(e) =>{
+    e.preventDefault()
     user.messages.push(formValues)
     updateUserApi(user)
     setFormValues(defaultFormValues)
+    alert("Message sent!")
   }
 
   const IsValidSubmitBtn = () => {
+    console.log(formValues)
     const isAllInfoFilledUp = Object.values(formValues).every(item => item != '')
-    const isPhoneNumberValid = (/^[0-9]{3}\.[0-9]{3}\.[0-9]{4}$/).test(formValues.phone)
     return (
-      isAllInfoFilledUp && isPhoneNumberValid
+      isAllInfoFilledUp
     )
   }
+
+  useEffect(() => {
+    const returnUser = async() => { 
+      const res = await getUserByIdApi(loggedUserId);
+      if (res !== "error") {
+        setUser(res);
+        setFormValues({name: res.name, email: res.email, message: ""})
+      }
+    }
+    if (loggedUserId && !user) {
+      returnUser()
+    }
+  }, [])
+
+  useEffect(() => {
+    const returnUser = async() => { 
+      const res = await getUserByIdApi(loggedUserId);
+      if (res !== "error") {
+        setUser(res);
+      }
+    }
+    if (loggedUserId && !user) {
+      returnUser()
+    }
+  }, [])
 
   useEffect(() => {
     const response = IsValidSubmitBtn()
@@ -117,7 +134,7 @@ export default function FormContactUs(){
 
   return(
     <StyledForm>
-        <div className="name-email-phone-div">
+        <div className="name-email-phone-div" style={{ display: user ? 'none' : 'grid' }} >
           <div data-aos="fade-up">
             <label htmlFor="name"> Name <span style={{color: 'red'}}>*</span></label>
             <PrimaryInput type='name' id="name" placeholder="Name" required value={formValues.name} onChange={(e) => handleInputChange(e , 'name')}/>
@@ -127,17 +144,12 @@ export default function FormContactUs(){
             <label htmlFor="email"> Email <span style={{color: 'red'}}>*</span></label>
             <PrimaryInput type='email' id="email" placeholder="Email" required value={formValues.email} onChange={(e) => handleInputChange(e , 'email')}/>
           </div>
-
-          <div data-aos="fade-up">
-            <label htmlFor="phone"> Phone <span style={{color: 'red'}}>*</span></label>
-            <PrimaryInput type='tel' pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" placeholder="Phone (xxx.xxx.xxxx)" id="phone" required value={formValues.phone} onChange={(e) => handleInputChange(e , 'phone')}/>
-          </div>
         </div>
         <div className="message-div" data-aos="fade-up">
           <label htmlFor="message"> Message <span style={{color: 'red'}}>*</span></label>
           <textarea placeholder="Message" id="message" required value={formValues.message} onChange={(e) => handleInputChange(e , 'message')}></textarea>
         </div>
-        <SubmitBtn id="submitContactUs" type="submit" ref={submitBtn} onClick={(e) => verifyUserValidity(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)} data-aos="fade-up"> Submit </SubmitBtn>
+        <SubmitBtn id="submitContactUs" type="submit" ref={submitBtn} onClick={(e) => user ? storeMessageUser(e) : storeGenericMessage(e)} disabled={isSubmitBtnDisabled} disabled_style={JSON.stringify(isSubmitBtnDisabled)} data-aos="fade-up"> Submit </SubmitBtn>
     </StyledForm>
   )
 }

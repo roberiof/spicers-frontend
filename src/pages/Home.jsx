@@ -21,8 +21,7 @@ export const WrapperHome = styled.div`
       max-width: 700px;
       position: absolute;
       left: 8%;
-      top:50%;
-      transform: translateY(-50%);
+      top: 40%;
       
       h1{
         text-shadow: 1px 1px 10px black;

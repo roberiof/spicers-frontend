@@ -61,7 +61,8 @@ export default function CreateAccount(){
       name: formValues.name,
       email: formValues.email,
       password: formValues.password,
-      orders: {}
+      orders: {},
+      messages: []
     }
     postUserApi(user)
     clearInputs()

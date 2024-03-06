@@ -78,6 +78,19 @@ export const updateUserApi = async(user) => {
   // this 'user' can be just a part of user
 }
 
+// API GENERIC MESSAGES 
+
+export const postGenericMessage = async (newMessage) => {
+  await fetch(`${api}/genericMessages`, {
+    method: "POST", 
+    body: JSON.stringify(newMessage),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+}
+
+
 // LOCAL STORAGE 
 export const ProductsCartLSKey = 'productsCartSpicers'
 export const UserIdLSKey = 'loggedUserId'
