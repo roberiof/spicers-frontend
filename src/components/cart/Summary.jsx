@@ -65,10 +65,10 @@ export default function Summary({ setProdsCart, prodsCart }){
       freight: product.freight,
       amountWanted: product.amountWanted,
     }
-    if(JSON.stringify(user.orders) === '{}'){
-      user.orders[orderNumber] = [order]
+    if(user.orders[orderNumber]){
+      user.orders[orderNumber] = [... user.orders[orderNumber], order]
     }else{
-      user.orders[orderNumber].push(order)
+      user.orders[orderNumber] = [order]
     }
     setUser(user)
     updateUserApi(user)
@@ -88,13 +88,13 @@ export default function Summary({ setProdsCart, prodsCart }){
     const confirmation = confirm('Do you really want to finish?')
     if(confirmation){
       setProdsCart([])
+      clearLocalStorage(ProductsCartLSKey)
       const orderNumber = parseInt(Math.random()*1000000)
       for(let product of prodsCart){
         updateUserOrders(orderNumber, product)
         product.amount -= product.amountWanted
         product.amountWanted = 0 
         updateProductApi(product)
-        clearLocalStorage(ProductsCartLSKey)
       }
       setTimeout(() =>{
         alert('Thank you! Enjoy your new shoppings!')

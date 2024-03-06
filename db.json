@@ -7,7 +7,7 @@
       "name": "Jimmy Hermano - Roms Sauce",
       "category": "Pepper",
       "price": 22.9,
-      "amount": 7,
+      "amount": 10,
       "freight": 10
     },
     {
@@ -17,7 +17,7 @@
       "name": "Bhut Jolokia - Coice de Mula",
       "category": "Pepper",
       "price": 19,
-      "amount": 5,
+      "amount": 14,
       "freight": 5
     },
     {
@@ -37,7 +37,7 @@
       "name": "Carolina Reaper - Chilli Brothers",
       "category": "Pepper",
       "price": 21,
-      "amount": 8,
+      "amount": 18,
       "freight": 0
     },
     {
@@ -89,6 +89,41 @@
       "price": 1,
       "amount": 0,
       "freight": 10
+    }
+  ],
+  "users": [
+    {
+      "id": "d073",
+      "name": "asdf",
+      "email": "asdf@asdf.com",
+      "password": "asdf@asdf.com",
+      "orders": {
+        "69147": [
+          {
+            "name": "Jimmy Hermano - Roms Sauce",
+            "category": "Pepper",
+            "price": 22.9,
+            "freight": 10,
+            "amountWanted": 1
+          }
+        ],
+        "360780": [
+          {
+            "name": "Jimmy Hermano - Roms Sauce",
+            "category": "Pepper",
+            "price": 22.9,
+            "freight": 10,
+            "amountWanted": 1
+          },
+          {
+            "name": "Bhut Jolokia - Coice de Mula",
+            "category": "Pepper",
+            "price": 19,
+            "freight": 5,
+            "amountWanted": 1
+          }
+        ]
+      }
     }
   ]
 }

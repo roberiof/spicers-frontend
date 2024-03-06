@@ -56,14 +56,19 @@ export const getUserByIdApi = async(id) => {
   }
 }
 
+const getAllUsers = async() => {
+  return await fetch(`${api}/users`).then(data => data.json()).catch(err => console.log(err));
+}
+
 export const getUserByEmailApi = async(email) => {
-  const users = getAllUsers()
-  const res = await fetch(`${api}/users/${email}`).then(data => data.json()).catch(err => console.log(err));
-  return res
+  const users = await getAllUsers()
+  if (!users) return undefined
+  const userWithEmail = users.find(user => user.email === email)
+  return userWithEmail
 }
 
 export const updateUserApi = async(user) => {
-  await fetch(`${api}/users/id/${user.id}` , {
+  await fetch(`${api}/users/${user.id}` , {
     method: "PATCH",
     body: JSON.stringify(user),
     headers: {

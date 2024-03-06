@@ -61,7 +61,7 @@ export default function CreateAccount(){
       name: formValues.name,
       email: formValues.email,
       password: formValues.password,
-      "orders": []
+      orders: {}
     }
     postUserApi(user)
     clearInputs()
@@ -76,8 +76,9 @@ export default function CreateAccount(){
       errorMessageAnimation(submitBtn , 'The name must be only letters and at least 3 of them.')
       return 
     }
-
+    
     const user = await getUserByEmailApi(formValues.email)
+    
     if( user ) {
       alert('This email is already registered!')
       return
@@ -106,7 +107,7 @@ export default function CreateAccount(){
   
   useEffect(() => {  
     const areAllInputsFilled = Object.values(formValues).every(item => item)
-    setIsSubmitBtnDisabled(! areAllInputsFilled)
+    setIsSubmitBtnDisabled(!areAllInputsFilled)
   })
 
   useEffect(() =>{
