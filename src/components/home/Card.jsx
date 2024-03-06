@@ -130,18 +130,18 @@ export default function Card({product, setProds}){
 
     const amountWanted = parseFloat(select.current.options[select.current.selectedIndex].value)
     const productsCart = getLocalStorage(ProductsCartLSKey) || [  ]
-    let prodInCart = productsCart.find(item => item._id === product._id)
+    let prodInCart = productsCart.find(item => item.id === product.id)
 
     if ( product.amountWanted < product.amount ){
       product.amountWanted += amountWanted
       updateProductApi(product)
       if (prodInCart){
-        productsCart.map(item => item._id === product._id ? item.amountWanted = product.amountWanted : item )
+        productsCart.map(item => item.id === product.id ? item.amountWanted = product.amountWanted : item )
         setLocalStorage([...productsCart] , ProductsCartLSKey)
       }else{
         setLocalStorage([...productsCart, product ] , ProductsCartLSKey)
       }
-      setProds(prev => prev.map(item => item._id === product._id ? item = product : item))
+      setProds(prev => prev.map(item => item.id === product.id ? item = product : item))
       // this guy is just for re-render my home component so the quantities be reorganized at home component, i didn't find a better way to do it
     }
   }

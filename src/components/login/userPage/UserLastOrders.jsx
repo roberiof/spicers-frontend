@@ -1,14 +1,13 @@
 import React, { useContext , useEffect } from 'react'
 import { UserContext } from '../../../context/UserContext'
-import { CardOrder } from './CardOrder'
+// import { CardOrder } from './CardOrder'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { WrapperContent , BackPageIcon, LinkStyle} from '../../../styles/UtilsStyles'
 import { getLocalStorage, getUserByIdApi, UserIdLSKey } from '../../../utils/GeralFunctions'
 import { useNavigate } from 'react-router-dom'
-import { Typography, Button} from '@mui/material'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import OrderModal from './OrderModal'
+// import OrderModal from './OrderModal'
 
 const UserLastOrders = () => {
   const navigate = useNavigate()

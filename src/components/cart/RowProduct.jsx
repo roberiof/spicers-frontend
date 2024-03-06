@@ -45,17 +45,17 @@ export default function RowProduct({product, setProdsCart}){
   const updateAmountWanted = () =>{
     product.amountWanted = amountWanted
     updateProductApi(product)
-    setProdsCart( prev => prev.map(item => item._id === product._id ? item = product : item))
-    const newLocalStorage = getLocalStorage(ProductsCartLSKey).map( item  => item._id === product._id ? item = product : item)
+    setProdsCart( prev => prev.map(item => item.id === product.id ? item = product : item))
+    const newLocalStorage = getLocalStorage(ProductsCartLSKey).map( item  => item.id === product.id ? item = product : item)
     setLocalStorage(newLocalStorage , ProductsCartLSKey)
   }
   
   const deleteProduct = () =>{
     product.amountWanted = 0 
     updateProductApi(product)
-    setProds( prev => prev.map( item => item._id ===  product._id ? item = product : item))
-    setProdsCart( prev => prev.filter( item => item._id !== product._id)) 
-    const newLocalStorage = getLocalStorage(ProductsCartLSKey).filter(item => item._id !== product._id)
+    setProds( prev => prev.map( item => item.id ===  product.id ? item = product : item))
+    setProdsCart( prev => prev.filter( item => item.id !== product.id)) 
+    const newLocalStorage = getLocalStorage(ProductsCartLSKey).filter(item => item.id !== product.id)
     setLocalStorage(newLocalStorage, ProductsCartLSKey)
   }
   

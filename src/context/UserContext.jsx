@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { createContext , useState } from "react";
-import { getLocalStorage, UserImageLSKey } from "../utils/GeralFunctions";
 import { getLocalStorage, getUserByEmailApi, getUserByIdApi, updateUserApi, UserImageLSKey } from "../utils/GeralFunctions";
 
 export const UserContext = createContext()

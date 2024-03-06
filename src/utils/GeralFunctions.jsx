@@ -18,7 +18,6 @@ const api = 'http://localhost:3000'
 export const getProductsApi = async() =>{
   try{
     const resp = await fetch( api + '/products' ).then(data => data.json())
-    console.log(resp)
     return resp
   } catch(error){
     console.log(error)
@@ -27,7 +26,7 @@ export const getProductsApi = async() =>{
 }
 
 export const updateProductApi = async(product) => {
-  await fetch(`${api}/products/${product._id}`, {
+  await fetch(`${api}/products/${product.id}`, {
     method: "PATCH",
     body: JSON.stringify(product),
     headers:{
@@ -49,27 +48,22 @@ export const postUserApi= async(user) => {
 
 export const getUserByIdApi = async(id) => {
   try{
-    const response = await fetch(`${api}/users/id/${id}`).then(data => data.json())
+    const response = await fetch(`${api}/users/${id}`).then(data => data.json())
     return response
   } catch(error){
     console.log(error)
     return 'error'
   }
-  
 }
 
 export const getUserByEmailApi = async(email) => {
-  try{
-    const response = await fetch(`${api}/users/email/${email}`).then(data => data.json())
-    return response 
-  } catch(error){
-    console.log(error)
-    return 'error'
-  }
+  const users = getAllUsers()
+  const res = await fetch(`${api}/users/${email}`).then(data => data.json()).catch(err => console.log(err));
+  return res
 }
 
 export const updateUserApi = async(user) => {
-  await fetch(`${api}/users/id/${user._id}` , {
+  await fetch(`${api}/users/id/${user.id}` , {
     method: "PATCH",
     body: JSON.stringify(user),
     headers: {

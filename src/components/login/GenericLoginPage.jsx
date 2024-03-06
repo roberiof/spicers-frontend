@@ -99,8 +99,8 @@ export default function GenericLoginPage({setIdUserLogged}){
   }
   
   const redirectToUserLoginPage = (user) => {
-    setIdUserLogged(user._id)
-    setLocalStorage([user._id] , UserIdLSKey) 
+    setIdUserLogged(user.id)
+    setLocalStorage([user.id] , UserIdLSKey) 
   }
 
   const handlePasswordActive = () => {
