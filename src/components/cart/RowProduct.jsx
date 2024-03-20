@@ -8,7 +8,6 @@ import 'aos/dist/aos.css';
 import styled from "styled-components";
 import { PrimaryBtn } from "../../styles/UtilsStyles";
 
-
 export const HandleAmountBtn = styled(PrimaryBtn)`
     background-color: ${({theme}) => theme.colors.cartActionBtn};
     color: black;

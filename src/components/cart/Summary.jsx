@@ -3,6 +3,7 @@ import { UserContext } from '../../context/UserContext';
 import { formatToCurrency, updateProductApi, clearLocalStorage, ProductsCartLSKey, updateUserApi, getUserByIdApi, getLocalStorage, UserIdLSKey } from '../../utils/GeralFunctions'
 import styled from "styled-components";
 import { PrimaryBtn } from "../../styles/UtilsStyles";
+import { ProductsContext } from '../../context/ProductsContext';
 
 export const SummaryStyle = styled.div`
   padding-inline: .5rem;
@@ -57,19 +58,40 @@ export default function Summary({ setProdsCart, prodsCart }){
     subtotal += product.price * product.amountWanted
   })
 
+  const getDateAndHour = () => {
+    const data = new Date()
+    const month = data.getMonth() + 1
+    const day = data.getDate()
+    const hours = data.getHours()
+    const minutes = data.getMinutes()
+    const seconds = data.getSeconds()
+    const times = [month, day, hours, minutes, seconds]
+  
+    const formattedTimes = times.map(item =>
+      item.toString().length === 1 ? '0' + item.toString() : item.toString()
+    );
+  
+    return `${formattedTimes[0]}/${formattedTimes[1]} ${formattedTimes[2]}:${formattedTimes[3]}:${formattedTimes[4]}`
+  }
+
   const updateUserOrders = (orderNumber , product) =>{
+    const currentDate = getDateAndHour()
     const order = {
       name: product.name, 
       category: product.category,
       price: product.price,
       freight: product.freight,
       amountWanted: product.amountWanted,
+      image: product.image,
+      orderNumber: orderNumber, 
+      date: currentDate
     }
-    if(JSON.stringify(user.orders) === '{}'){
-      user.orders[orderNumber] = [order]
-    }else{
-      user.orders[orderNumber].push(order)
+
+    if( !(currentDate in user.orders) ){
+      user.orders[currentDate] = []
     }
+    
+    user.orders[currentDate].push(order)
     setUser(user)
     updateUserApi(user)
   }
@@ -81,21 +103,21 @@ export default function Summary({ setProdsCart, prodsCart }){
     }
 
     if(prodsCart.length === 0){
-      alert('The cart is empty!')
+      alert('The cart is empty!') 
       return 
     }
     
     const confirmation = confirm('Do you really want to finish?')
     if(confirmation){
-      setProdsCart([])
       const orderNumber = parseInt(Math.random()*1000000)
       for(let product of prodsCart){
         updateUserOrders(orderNumber, product)
         product.amount -= product.amountWanted
         product.amountWanted = 0 
         updateProductApi(product)
-        clearLocalStorage(ProductsCartLSKey)
       }
+      clearLocalStorage(ProductsCartLSKey)
+      setProdsCart([])
       setTimeout(() =>{
         alert('Thank you! Enjoy your new shoppings!')
       }, 400)

@@ -10,7 +10,7 @@ import 'aos/dist/aos.css';
 import styled from 'styled-components'
 import { WrapperContent } from '../styles/UtilsStyles'
 
-export const WrapperContentCart = styled(WrapperContent)`
+const WrapperContentCart = styled(WrapperContent)`
   .content{
     display: flex;
     justify-content: space-between;
@@ -38,7 +38,7 @@ export const WrapperContentCart = styled(WrapperContent)`
   }
 `
 
-export const TableStyle  = styled.table`
+const TableStyle  = styled.table`
   width: 100%;
   border-collapse: collapse;
   thead{

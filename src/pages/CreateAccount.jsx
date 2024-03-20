@@ -148,7 +148,7 @@ export default function CreateAccount(){
           />
           <div className='input-icon'>
             <PrimaryInput type={isShowPasswordActive.password ? 'text' : 'password' } ref={passwordInput} id="password" placeholder="Password" required  value={formValues.password} onChange={(e) => handleInputChange(e, 'password')}/>
-            <ViewIcon onClick={() => handleShowPassword('password')}> 
+            <ViewIcon onClick={() => handleShowPassword('password')} type="button"> 
               {isShowPasswordActive.password ? <AiFillEyeInvisible/> : <AiFillEye/> } 
             </ViewIcon>
           </div>
@@ -163,7 +163,7 @@ export default function CreateAccount(){
           <div className='input-icon' data-aos="fade-left">
             <PrimaryInput type={isShowPasswordActive.confirmationPassword ? 'text' : 'password' } ref={confirmationPasswordInput} id="password again" placeholder="Password again" required value={formValues.confirmationPassword}
             onChange={(e) => handleInputChange(e, 'confirmationPassword')}/>
-            <ViewIcon onClick={() => handleShowPassword('confirmationPassword')}>  
+            <ViewIcon onClick={() => handleShowPassword('confirmationPassword')} type="button">  
               {isShowPasswordActive.confirmationPassword ? <AiFillEyeInvisible/> : <AiFillEye/> } 
             </ViewIcon>
           </div>

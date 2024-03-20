@@ -8,8 +8,7 @@ import { PrimaryIcon , UserProfileImage } from '../../../styles/UtilsStyles'
 import { MdEditDocument } from 'react-icons/md'
 
 import styled from 'styled-components'
-import { getLocalStorage, setLocalStorage, UserImageLSKey } from '../../../utils/GeralFunctions'
-import { useEffect } from 'react'
+import { setLocalStorage, UserImageLSKey } from '../../../utils/GeralFunctions'
 
 const WrapperInput = styled.div`
     input{

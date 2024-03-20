@@ -191,6 +191,6 @@ export const UserProfileImage = styled.img`
   margin: auto;
   display: block; 
   cursor: pointer;
-  border: ${({disabled_border}) => disabled_border ? 'none' : "2px solid red"}
-   
+  border: ${({disabled_border}) => disabled_border ? 'none' : "2px solid red"};
+  object-fit: cover;
 `

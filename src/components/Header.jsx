@@ -6,7 +6,7 @@ import { MdOutlineForwardToInbox } from 'react-icons/md'
 import { PrimaryIcon , UserProfileImage } from '../styles/UtilsStyles';
 import logo from '../assets/logo.png'
 import randomUser from '../assets/random-user.png'
-import { getLocalStorage, ProductsCartLSKey } from '../utils/GeralFunctions';
+import { getLocalStorage, getUserByIdApi, ProductsCartLSKey, UserIdLSKey } from '../utils/GeralFunctions';
 import { useNavigate } from "react-router-dom";
 import { ProductsContext } from '../context/ProductsContext';
 import { UserContext } from '../context/UserContext';
@@ -178,12 +178,22 @@ export default function Header(){
   const [activeHiddenMenu , setActiveHiddenMenu] = useState(false)
   const navigate = useNavigate() 
   const { prods } = useContext(ProductsContext)
-  const { user } = useContext(UserContext)
+  const { user , setUser} = useContext(UserContext)
   const { imageURL } = useContext(UserContext)
 
   const backHomeAndCloseMenu = () => {
     setActiveHiddenMenu(false)
     navigate('/')
+  }
+  
+  const getLoggedUser = async() =>{
+    const idUserLogged = getLocalStorage(UserIdLSKey) 
+    const response = await getUserByIdApi(idUserLogged)
+    if (response === 'error'){
+      return 
+     }
+    setUser(response)
+    console.log(response)
   }
 
   useEffect(() => {    
@@ -203,6 +213,9 @@ export default function Header(){
     } 
   } , [document])
   
+  useEffect( () => {
+    getLoggedUser() 
+  } , [])
   return (
     <>  
       <Navigator transparent={transparent} activeHiddenMenu={activeHiddenMenu} ref={nav}> 

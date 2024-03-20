@@ -18,7 +18,6 @@ const api = 'http://localhost:3000'
 export const getProductsApi = async() =>{
   try{
     const resp = await fetch( api + '/products' ).then(data => data.json())
-    console.log(resp)
     return resp
   } catch(error){
     console.log(error)

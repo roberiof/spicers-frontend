@@ -1,4 +1,4 @@
-import React , { useEffect, useState } from 'react'
+import React , { useEffect } from 'react'
 import  { getProductsApi } from '../utils/GeralFunctions'
 import Card from '../components/home/Card'
 import { useContext } from 'react'
@@ -70,13 +70,11 @@ export default function Home(){
 
   const getAllProducts = async() =>{
     const response = await getProductsApi()
-    console.log(response)
     if (response == 'error'){
       return
     }
     setProds(response)
   }
-
 
   useEffect( () => {
     getAllProducts()

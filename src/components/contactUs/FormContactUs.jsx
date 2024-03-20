@@ -93,6 +93,9 @@ export default function FormContactUs(){
   }
 
   const storeMessage = async(user) =>{
+    setTimeout(() =>{
+      alert('Your message was sent successfully.')
+    } , 400)
     user.messages.push(formValues)
     updateUserApi(user)
     setFormValues(defaultFormValues)
